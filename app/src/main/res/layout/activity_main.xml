@@ -18,6 +18,7 @@
         app:lk_show_operation="true"
         app:lk_default_show_search="true"
         app:lk_toolbar_title="测试"
+        app:lk_search_background="#FF0000"
         android:layout_height="wrap_content"/>
 
     <TextView
