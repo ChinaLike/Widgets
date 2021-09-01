@@ -75,7 +75,7 @@
         <attr name="android:textStyle" />
         <attr name="lk_search_height" format="dimension" />
         <attr name="lk_search_radius" format="dimension" />
-        <attr name="lk_search_background" format="reference" />
+        <attr name="lk_search_background" format="reference|color" />
         <attr name="lk_search_stroke_width" format="dimension" />
         <attr name="lk_search_stroke_color" format="color" />
         <attr name="lk_search_padding_left" format="dimension" />
