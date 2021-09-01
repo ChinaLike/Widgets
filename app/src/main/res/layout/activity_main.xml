@@ -10,6 +10,7 @@
     <com.core.widget.toolbar.SimpleToolbar
         android:layout_width="match_parent"
         app:lk_show_left_layout="true"
+        android:background="#00FF00"
         android:layout_height="wrap_content"/>
 
     <com.core.widget.toolbar.SearchToolbar
