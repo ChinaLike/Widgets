@@ -3,28 +3,17 @@ package com.test.widgets
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.core.widget.toolbar.OnToolbarListener
-import com.core.widget.toolbar.ToolbarConfig
 import com.test.widgets.databinding.ActivityMainBinding
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
-
-        ToolbarConfig.getInstance(this).apply {
-            searchRadius = 10F
-        }
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
             val flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
@@ -42,22 +31,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        setContentView(binding.root)
+        super.onCreate(savedInstanceState)
 
-        binding.searchToolbar.onToolbarListener = object :OnToolbarListener{
+        binding.searchToolbar.onToolbarListener = object : OnToolbarListener {
 
             override fun onSearchCancel(): Boolean {
-                Toast.makeText(this@MainActivity,"取消",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "取消", Toast.LENGTH_SHORT).show()
                 return false
             }
 
             override fun onSearchTextChanged(searchText: String?) {
-                Toast.makeText(this@MainActivity,searchText?:"",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, searchText ?: "", Toast.LENGTH_SHORT).show()
                 super.onSearchTextChanged(searchText)
             }
 
             override fun search(searchText: String?) {
-                Toast.makeText(this@MainActivity,searchText?:"",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, searchText ?: "", Toast.LENGTH_SHORT).show()
             }
 
         }

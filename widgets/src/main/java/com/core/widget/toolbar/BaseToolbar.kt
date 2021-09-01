@@ -43,10 +43,8 @@ abstract class BaseToolbar : LinearLayout {
     @DrawableRes
     private var simpleMenuDrawable: Int? = null
 
-
-    constructor(context: Context) : this(context, null)
-    constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
-    constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {
+    @JvmOverloads
+    constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
         orientation = VERTICAL
         initAttr(context, attributeSet)
         setPadding(0, getStatusBarHeight(), 0, 0)
@@ -116,7 +114,7 @@ abstract class BaseToolbar : LinearLayout {
 
     private fun initView() {
         binding.backIcon.setImageDrawable(builder.backIcon)
-        binding.backIcon.setColorFilter(builder.themeColor)
+        binding.backIcon.setColorFilter(builder.backIconColor ?: builder.themeColor)
 
         binding.backText.visibility = if (builder.showBackText) VISIBLE else GONE
         binding.backText.text = builder.backText
