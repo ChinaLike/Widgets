@@ -27,7 +27,7 @@ import com.core.widget.databinding.LkToolbarBaseBinding
  */
 abstract class BaseToolbar : LinearLayout {
 
-    protected val binding = LkToolbarBaseBinding.inflate(LayoutInflater.from(context), this,true)
+    protected val binding = LkToolbarBaseBinding.inflate(LayoutInflater.from(context), this)
 
     /**
      * 全局配置参数
@@ -45,8 +45,9 @@ abstract class BaseToolbar : LinearLayout {
 
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
+        orientation = VERTICAL
         initAttr(context, attributeSet)
-//        setPadding(0, getStatusBarHeight(), 0, 0)
+        setPadding(0, getStatusBarHeight(), 0, 0)
         contentLayout(binding.middleLayout)
 
         initView()
@@ -112,8 +113,6 @@ abstract class BaseToolbar : LinearLayout {
         }
 
     private fun initView() {
-        binding.root.setPadding(0, getStatusBarHeight(), 0, 0)
-
         binding.backIcon.setImageDrawable(builder.backIcon)
         binding.backIcon.setColorFilter(builder.backIconColor ?: builder.themeColor)
 

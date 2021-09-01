@@ -19,15 +19,9 @@ class SimpleToolbar : BaseToolbar {
 
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int =0) : super(context, attributeSet, defStyleAttr) {
-        binding.middleLayout.visibility = GONE
-        binding.title.visibility = VISIBLE
         title = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
         initAttr(context, attributeSet)
-
-        binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
-        binding.title.setTextColor(builder.titleTextColor ?: builder.themeColor)
-        binding.title.text = title
-        binding.title.typeface = Typeface.defaultFromStyle(builder.titleTextStyle)
+        initView()
     }
 
     private fun initAttr(context: Context, attributeSet: AttributeSet?) =
@@ -51,6 +45,15 @@ class SimpleToolbar : BaseToolbar {
             }
             recycle()
         }
+
+    private fun initView(){
+        binding.middleLayout.visibility = GONE
+        binding.title.visibility = VISIBLE
+        binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
+        binding.title.setTextColor(builder.titleTextColor ?: builder.themeColor)
+        binding.title.text = title
+        binding.title.typeface = Typeface.defaultFromStyle(builder.titleTextStyle)
+    }
 
     /**
      * 自定义中间布局
