@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.core.widget.toolbar.SimpleToolbar
+        android:layout_width="match_parent"
+        app:lk_show_left_layout="true"
+        android:layout_height="wrap_content"/>
+
+    <com.core.widget.toolbar.SearchToolbar
+        android:id="@+id/searchToolbar"
+        android:layout_width="match_parent"
+        app:lk_show_operation="true"
+        app:lk_default_show_search="true"
+        app:lk_toolbar_title="测试"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>

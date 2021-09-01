@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="lk_color" format="color" />
+
+    <!--  带清除按钮的编辑框  -->
+    <declare-styleable name="ClearEditText">
+        <attr name="cetClearIcon" format="reference" />
+        <attr name="cetHintIcon" format="reference" />
+        <attr name="cetDisabled" format="boolean" />
+        <attr name="cetDisabledColor" format="color" />
+        <attr name="cetIconMarginLeft" format="dimension" />
+        <attr name="cetShowClearIcon" format="boolean" />
+        <attr name="cetShowHintIcon" format="boolean" />
+        <attr name="cetRequire" format="boolean" />
+        <attr name="cetClearIconSize" format="dimension" />
+        <attr name="cetClearIconWidth" format="dimension" />
+        <attr name="cetClearIconHeight" format="dimension" />
+        <attr name="cetHintIconSize" format="dimension" />
+        <attr name="cetHintIconWidth" format="dimension" />
+        <attr name="cetHintIconHeight" format="dimension" />
+    </declare-styleable>
+
+    <!--  Toolbar  -->
+    <attr name="lk_toolbar_title" format="string" />
+    <attr name="lk_toolbar_title_text_size" format="dimension" />
+    <attr name="lk_toolbar_title_text_color" format="color" />
+    <attr name="lk_show_left_layout" format="boolean" />
+    <attr name="lk_back_icon" format="dimension" />
+    <attr name="lk_back_icon_color" format="color" />
+    <attr name="lk_show_back_text" format="boolean" />
+    <attr name="lk_back_text" format="string" />
+    <attr name="lk_back_text_margin_left" format="dimension" />
+    <attr name="lk_back_text_size" format="dimension" />
+    <attr name="lk_back_text_color" format="color" />
+    <attr name="lk_show_right_layout" format="boolean" />
+    <attr name="lk_padding_left" format="dimension" />
+    <attr name="lk_padding_right" format="dimension" />
+    <attr name="lk_content_margin_left" format="dimension" />
+    <attr name="lk_content_margin_right" format="dimension" />
+    <attr name="lk_show_divider" format="boolean" />
+    <attr name="lk_divider_color" format="color" />
+    <attr name="lk_toolbar_menu_icon" format="reference" />
+
+    <declare-styleable name="BaseToolbar">
+        <attr name="lk_show_left_layout" />
+        <attr name="lk_back_icon" />
+        <attr name="lk_back_icon_color" />
+        <attr name="lk_show_back_text" />
+        <attr name="lk_back_text" />
+        <attr name="lk_back_text_margin_left" />
+        <attr name="lk_back_text_size" />
+        <attr name="lk_back_text_color" />
+        <attr name="lk_show_right_layout" />
+        <attr name="lk_padding_left" />
+        <attr name="lk_padding_right" />
+        <attr name="lk_content_margin_left" />
+        <attr name="lk_content_margin_right" />
+        <attr name="lk_toolbar_menu_icon" />
+        <attr name="lk_show_divider" />
+        <attr name="lk_divider_color" />
+    </declare-styleable>
+
+    <declare-styleable name="SimpleToolbar">
+        <attr name="lk_toolbar_title" />
+        <attr name="lk_toolbar_title_text_size" />
+        <attr name="lk_toolbar_title_text_color" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <declare-styleable name="SearchToolbar">
+        <attr name="lk_toolbar_title" />
+        <attr name="lk_toolbar_title_text_size" />
+        <attr name="lk_toolbar_title_text_color" />
+        <attr name="android:textStyle" />
+        <attr name="lk_search_height" format="dimension" />
+        <attr name="lk_search_radius" format="dimension" />
+        <attr name="lk_search_background" format="reference" />
+        <attr name="lk_search_stroke_width" format="dimension" />
+        <attr name="lk_search_stroke_color" format="color" />
+        <attr name="lk_search_padding_left" format="dimension" />
+        <attr name="lk_search_padding_right" format="dimension" />
+        <attr name="lk_search_margin_right" format="dimension" />
+        <attr name="lk_default_show_search" format="boolean" />
+        <attr name="lk_search_before_icon" format="reference" />
+        <attr name="lk_search_before_icon_color" format="color" />
+        <attr name="lk_search_before_icon_width" format="dimension" />
+        <attr name="lk_search_before_icon_height" format="dimension" />
+        <attr name="lk_search_edit_margin_left" format="dimension" />
+        <attr name="lk_search_hint_text" format="string" />
+        <attr name="lk_search_enable" format="boolean" />
+        <attr name="lk_search_hint_text_size" format="dimension" />
+        <attr name="lk_search_hint_text_color" format="color" />
+        <attr name="lk_search_text" format="string" />
+        <attr name="lk_search_text_size" format="dimension" />
+        <attr name="lk_search_text_color" format="color" />
+        <attr name="lk_show_operation" format="boolean" />
+        <attr name="lk_operation_icon" format="reference" />
+        <attr name="lk_operation_icon_width" format="dimension" />
+        <attr name="lk_operation_icon_height" format="dimension" />
+        <attr name="lk_operation_text" format="string" />
+        <attr name="lk_operation_text_size" format="dimension" />
+        <attr name="lk_operation_text_color" format="color" />
+    </declare-styleable>
+
+    <!--  绘制三角形  -->
+    <declare-styleable name="TriangleView">
+        <attr name="lk_color" />
+        <attr name="lk_direction">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+            <enum name="right" value="2" />
+            <enum name="left" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>

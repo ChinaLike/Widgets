@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  Toolbar  -->
+    <color name="lk_toolbar_divider_color">#DCDCDC</color>
+    <!--  默认返回按钮，返回标签，标题等的颜色  -->
+    <color name="lk_toolbar_default_color">#FF333333</color>
+
+    <color name="lk_toolbar_search_stroke_color">#C8C8C8</color>
+    <color name="lk_toolbar_search_hint_color">#9D9D9D</color>
+    <color name="lk_toolbar_search_text_color">#666666</color>
+    <color name="lk_toolbar_operation_text_color">#666666</color>
+
+</resources>

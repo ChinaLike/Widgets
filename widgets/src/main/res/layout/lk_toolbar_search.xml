@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/lk_toolbar_search_margin_right"
+        android:layout_weight="1"
+        android:background="@drawable/lk_shape_toolbar_search"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/lk_toolbar_search_padding_left"
+        android:paddingRight="@dimen/lk_toolbar_search_padding_right"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/operationLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="40dp"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="@dimen/lk_toolbar_search_before_icon_width"
+            android:layout_height="@dimen/lk_toolbar_search_before_icon_height"
+            android:src="@drawable/lk_icon_toolbar_search" />
+
+        <com.core.widget.edit.ClearEditText
+            android:id="@+id/clearEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/lk_toolbar_search_edit_margin_left"
+            android:background="@null"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:hint="请输入搜索内容" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/operationLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/inputLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/inputLayout">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/operationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/operationIcon"
+            android:layout_width="@dimen/lk_toolbar_operation_icon_width"
+            android:layout_height="@dimen/lk_toolbar_operation_icon_width"
+            android:src="@drawable/lk_icon_toolbar_right_search" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

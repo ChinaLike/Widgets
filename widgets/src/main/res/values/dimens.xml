@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Toolbar  -->
+    <!--  内边距  -->
+    <dimen name="lk_toolbar_horizontal_padding">15dp</dimen>
+    <dimen name="lk_toolbar_divider_height">0.5dp</dimen>
+    <dimen name="lk_toolbar_back_text_margin_left">10dp</dimen>
+    <dimen name="lk_toolbar_middle_layout_margin_horizontal">10dp</dimen>
+    <dimen name="lk_toolbar_title_text_size">18sp</dimen>
+    <dimen name="lk_toolbar_back_text_size">14sp</dimen>
+    <dimen name="lk_toolbar_search_height">34dp</dimen>
+    <dimen name="lk_toolbar_search_stroke_width">0.5dp</dimen>
+    <dimen name="lk_toolbar_search_margin_right">20dp</dimen>
+    <dimen name="lk_toolbar_search_padding_left">20dp</dimen>
+    <dimen name="lk_toolbar_search_padding_right">20dp</dimen>
+    <dimen name="lk_toolbar_search_edit_margin_left">10dp</dimen>
+    <dimen name="lk_toolbar_search_hint_text_size">14sp</dimen>
+    <dimen name="lk_toolbar_search_text_size">14sp</dimen>
+    <dimen name="lk_toolbar_operation_text_size">14sp</dimen>
+    <dimen name="lk_toolbar_search_before_icon_width">17dp</dimen>
+    <dimen name="lk_toolbar_search_before_icon_height">17dp</dimen>
+    <dimen name="lk_toolbar_operation_icon_width">20dp</dimen>
+    <dimen name="lk_toolbar_operation_icon_height">20dp</dimen>
+</resources>
