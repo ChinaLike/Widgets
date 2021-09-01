@@ -50,6 +50,11 @@ class ToolbarConfig private constructor(context: Context) {
     var backText: String = "关闭"
 
     /**
+     * 是否显示返回文本
+     */
+    var showBackText:Boolean = false
+
+    /**
      * 标题大小
      */
     @Dimension(unit = Dimension.PX)

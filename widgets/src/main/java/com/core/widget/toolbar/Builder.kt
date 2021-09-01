@@ -51,6 +51,11 @@ internal class Builder constructor(context: Context) {
     var backText: String = toolbarConfig.backText
 
     /**
+     * 是否显示返回文本
+     */
+    var showBackText:Boolean = toolbarConfig.showBackText
+
+    /**
      * 标题大小
      */
     @Dimension(unit = Dimension.PX)

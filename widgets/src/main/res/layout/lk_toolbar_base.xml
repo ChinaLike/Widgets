@@ -37,7 +37,6 @@
                 android:gravity="center"
                 android:text="关闭"
                 android:visibility="gone"
-                tools:visibility="visible"
                 android:textColor="@color/lk_toolbar_default_color"
                 android:textSize="@dimen/lk_toolbar_back_text_size"
                 app:layout_constraintLeft_toRightOf="@id/backIcon" />

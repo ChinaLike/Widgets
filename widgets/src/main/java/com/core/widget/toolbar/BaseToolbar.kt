@@ -70,8 +70,7 @@ abstract class BaseToolbar : LinearLayout {
                         builder.backIconColor = getColor(attr, builder.themeColor)
                     }
                     R.styleable.BaseToolbar_lk_show_back_text -> {
-                        val showBackText = getBoolean(attr, false)
-                        binding.backText.visibility = if (showBackText) VISIBLE else GONE
+                        builder.showBackText = getBoolean(attr, false)
                     }
                     R.styleable.BaseToolbar_lk_back_text -> {
                         builder.backText = getString(attr) ?: builder.backText
@@ -118,6 +117,8 @@ abstract class BaseToolbar : LinearLayout {
     private fun initView() {
         binding.backIcon.setImageDrawable(builder.backIcon)
         binding.backIcon.setColorFilter(builder.themeColor)
+
+        binding.backText.visibility = if (builder.showBackText) VISIBLE else GONE
         binding.backText.text = builder.backText
 
         binding.backText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.backTextSize)
@@ -234,6 +235,7 @@ abstract class BaseToolbar : LinearLayout {
      * 显示返回文本
      */
     fun showBackText(show: Boolean) {
+        builder.showBackText = show
         binding.backText.visibility = if (show) VISIBLE else GONE
     }
 
