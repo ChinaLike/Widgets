@@ -47,12 +47,12 @@ class SimpleToolbar : BaseToolbar {
         }
 
     private fun initView(){
-        binding.middleLayout.visibility = GONE
-        binding.title.visibility = VISIBLE
-        binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
-        binding.title.setTextColor(builder.titleTextColor ?: builder.themeColor)
-        binding.title.text = title
-        binding.title.typeface = Typeface.defaultFromStyle(builder.titleTextStyle)
+        binding.toolbarMiddleLayout.visibility = GONE
+        binding.toolbarTitle.visibility = VISIBLE
+        binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
+        binding.toolbarTitle.setTextColor(builder.titleTextColor ?: builder.themeColor)
+        binding.toolbarTitle.text = title
+        binding.toolbarTitle.typeface = Typeface.defaultFromStyle(builder.titleTextStyle)
     }
 
     /**
@@ -66,7 +66,7 @@ class SimpleToolbar : BaseToolbar {
      * 设置标题
      */
     fun setTitle(title: String?) {
-        binding.title.text = title
+        binding.toolbarTitle.text = title
     }
 
     /**
@@ -74,7 +74,7 @@ class SimpleToolbar : BaseToolbar {
      */
     fun setTitleTextSize(textSize: Float) {
         builder.titleTextSize = textSize
-        binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
     }
 
     /**
@@ -82,7 +82,7 @@ class SimpleToolbar : BaseToolbar {
      */
     fun setTitleTextColor(color: Int) {
         builder.titleTextColor = color
-        binding.title.setTextColor(color)
+        binding.toolbarTitle.setTextColor(color)
     }
 
     /**
@@ -90,7 +90,7 @@ class SimpleToolbar : BaseToolbar {
      */
     fun setTitleTextStyle(style: Int) {
         builder.titleTextStyle = style
-        binding.title.typeface = Typeface.defaultFromStyle(style)
+        binding.toolbarTitle.typeface = Typeface.defaultFromStyle(style)
     }
 
 }

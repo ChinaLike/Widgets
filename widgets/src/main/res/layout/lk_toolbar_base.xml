@@ -8,20 +8,20 @@
     tools:parentTag="android.widget.LinearLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentLayout"
+        android:id="@+id/toolbarContentLayout"
         android:layout_width="match_parent"
         android:paddingHorizontal="@dimen/lk_toolbar_horizontal_padding"
         android:layout_height="?android:attr/actionBarSize">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/leftLayout"
+            android:id="@+id/toolbarLeftLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/backIcon"
+                android:id="@+id/toolbarBackIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingRight="@dimen/lk_toolbar_back_text_margin_left"
@@ -31,7 +31,7 @@
                 app:layout_constraintLeft_toLeftOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/backText"
+                android:id="@+id/toolbarBackText"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -39,20 +39,20 @@
                 android:visibility="gone"
                 android:textColor="@color/lk_toolbar_default_color"
                 android:textSize="@dimen/lk_toolbar_back_text_size"
-                app:layout_constraintLeft_toRightOf="@id/backIcon" />
+                app:layout_constraintLeft_toRightOf="@id/toolbarBackIcon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
-            android:id="@+id/middleLayout"
+            android:id="@+id/toolbarMiddleLayout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/lk_toolbar_middle_layout_margin_horizontal"
-            app:layout_constraintLeft_toRightOf="@id/leftLayout"
-            app:layout_constraintRight_toLeftOf="@id/rightLayout" />
+            app:layout_constraintLeft_toRightOf="@id/toolbarLeftLayout"
+            app:layout_constraintRight_toLeftOf="@id/toolbarRightLayout" />
 
         <LinearLayout
-            android:id="@+id/rightLayout"
+            android:id="@+id/toolbarRightLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -61,7 +61,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
+            android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -75,7 +75,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/toolbarDivider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/lk_toolbar_divider_height"
         android:background="@color/lk_toolbar_divider_color" />

@@ -48,7 +48,7 @@ abstract class BaseToolbar : LinearLayout {
         orientation = VERTICAL
         initAttr(context, attributeSet)
         setPadding(0, getStatusBarHeight(), 0, 0)
-        contentLayout(binding.middleLayout)
+        contentLayout(binding.toolbarMiddleLayout)
 
         initView()
     }
@@ -59,7 +59,7 @@ abstract class BaseToolbar : LinearLayout {
                 when (val attr = getIndex(i)) {
                     R.styleable.BaseToolbar_lk_show_left_layout -> {
                         val showLeftLayout = getBoolean(attr, true)
-                        binding.leftLayout.visibility = if (showLeftLayout) VISIBLE else GONE
+                        binding.toolbarLeftLayout.visibility = if (showLeftLayout) VISIBLE else GONE
                     }
                     R.styleable.BaseToolbar_lk_back_icon -> {
                         builder.backIcon = getDrawable(attr)
@@ -84,7 +84,7 @@ abstract class BaseToolbar : LinearLayout {
                     }
                     R.styleable.BaseToolbar_lk_show_right_layout -> {
                         val showRightLayout = getBoolean(attr, false)
-                        binding.rightLayout.visibility = if (showRightLayout) VISIBLE else GONE
+                        binding.toolbarRightLayout.visibility = if (showRightLayout) VISIBLE else GONE
                     }
                     R.styleable.BaseToolbar_lk_padding_left -> {
                         builder.toolbarPaddingLeft = getDimension(attr, builder.toolbarPaddingLeft)
@@ -113,31 +113,31 @@ abstract class BaseToolbar : LinearLayout {
         }
 
     private fun initView() {
-        binding.backIcon.setImageDrawable(builder.backIcon)
-        binding.backIcon.setColorFilter(builder.backIconColor ?: builder.themeColor)
+        binding.toolbarBackIcon.setImageDrawable(builder.backIcon)
+        binding.toolbarBackIcon.setColorFilter(builder.backIconColor ?: builder.themeColor)
 
-        binding.backText.visibility = if (builder.showBackText) VISIBLE else GONE
-        binding.backText.text = builder.backText
+        binding.toolbarBackText.visibility = if (builder.showBackText) VISIBLE else GONE
+        binding.toolbarBackText.text = builder.backText
 
-        binding.backText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.backTextSize)
-        binding.backText.setTextColor(builder.backTextColor ?: builder.themeColor)
+        binding.toolbarBackText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.backTextSize)
+        binding.toolbarBackText.setTextColor(builder.backTextColor ?: builder.themeColor)
         //设置间距
-        binding.contentLayout.setPadding(builder.toolbarPaddingLeft.toInt(), 0, builder.toolbarPaddingRight.toInt(), 0)
-        binding.backIcon.setPadding(0, 0, builder.backTextMarginLeft.toInt(), 0)
+        binding.toolbarContentLayout.setPadding(builder.toolbarPaddingLeft.toInt(), 0, builder.toolbarPaddingRight.toInt(), 0)
+        binding.toolbarBackText.setPadding(0, 0, builder.backTextMarginLeft.toInt(), 0)
 
         setContentMargin(builder.toolbarContentMarginLeft, builder.toolbarContentMarginRight)
 
         simpleMenuDrawable?.let { setMenuResource(it) }
         //分割线
-        binding.divider.setBackgroundColor(builder.dividerColor)
-        binding.divider.visibility = if (builder.showDivider) VISIBLE else GONE
+        binding.toolbarDivider.setBackgroundColor(builder.dividerColor)
+        binding.toolbarDivider.visibility = if (builder.showDivider) VISIBLE else GONE
 
-        binding.backIcon.onDebouncedClick {
+        binding.toolbarBackIcon.onDebouncedClick {
             if (onToolbarListener == null || onToolbarListener?.onCallback() == true) {
                 (context as Activity).finish()
             }
         }
-        binding.backText.onDebouncedClick {
+        binding.toolbarBackText.onDebouncedClick {
             onToolbarListener?.onClose()
         }
     }
@@ -164,15 +164,15 @@ abstract class BaseToolbar : LinearLayout {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val rightWidth = binding.rightLayout.width
-        val leftWidth = binding.leftLayout.width
+        val rightWidth = binding.toolbarRightLayout.width
+        val leftWidth = binding.toolbarLeftLayout.width
         val middleWidth = resources.displayMetrics.widthPixels
         -2 * (rightWidth.coerceAtLeast(leftWidth))
         -builder.toolbarContentMarginLeft.toInt()
         -builder.toolbarContentMarginRight.toInt()
         -builder.toolbarPaddingRight
         -builder.toolbarPaddingLeft
-        binding.title.layoutParams = ConstraintLayout.LayoutParams(middleWidth, LayoutParams.WRAP_CONTENT).apply {
+        binding.toolbarTitle.layoutParams = ConstraintLayout.LayoutParams(middleWidth, LayoutParams.WRAP_CONTENT).apply {
             leftToLeft = ConstraintSet.PARENT_ID
             rightToRight = ConstraintSet.PARENT_ID
             topToTop = ConstraintSet.PARENT_ID
@@ -181,8 +181,8 @@ abstract class BaseToolbar : LinearLayout {
     }
 
     fun setMenuView(view: View) {
-        binding.rightLayout.removeAllViews()
-        binding.rightLayout.addView(view)
+        binding.toolbarRightLayout.removeAllViews()
+        binding.toolbarRightLayout.addView(view)
     }
 
     /**
@@ -193,7 +193,7 @@ abstract class BaseToolbar : LinearLayout {
             layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
             setImageResource(resId)
         }
-        binding.rightLayout.apply {
+        binding.toolbarRightLayout.apply {
             removeAllViews()
             addView(imageView)
         }
@@ -203,14 +203,14 @@ abstract class BaseToolbar : LinearLayout {
      * 显示左侧视图
      */
     fun showLeftLayout(show: Boolean) {
-        binding.leftLayout.visibility = if (show) VISIBLE else GONE
+        binding.toolbarLeftLayout.visibility = if (show) VISIBLE else GONE
     }
 
     /**
      * 显示右侧视图
      */
     fun showRightLayout(show: Boolean) {
-        binding.rightLayout.visibility = if (show) VISIBLE else GONE
+        binding.toolbarRightLayout.visibility = if (show) VISIBLE else GONE
     }
 
     /**
@@ -218,7 +218,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setBackIcon(backIcon: Drawable) {
         builder.backIcon = backIcon
-        binding.backIcon.setImageDrawable(backIcon)
+        binding.toolbarBackIcon.setImageDrawable(backIcon)
     }
 
     /**
@@ -226,7 +226,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setBackIconColor(@ColorInt backIconColor: Int) {
         builder.backIconColor = backIconColor
-        binding.backIcon.setColorFilter(backIconColor)
+        binding.toolbarBackIcon.setColorFilter(backIconColor)
     }
 
     /**
@@ -234,7 +234,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun showBackText(show: Boolean) {
         builder.showBackText = show
-        binding.backText.visibility = if (show) VISIBLE else GONE
+        binding.toolbarBackText.visibility = if (show) VISIBLE else GONE
     }
 
     /**
@@ -242,7 +242,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setBackText(backText: String) {
         builder.backText = backText
-        binding.backText.text = backText
+        binding.toolbarBackText.text = backText
     }
 
     /**
@@ -250,7 +250,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setBackTextMarginLeft(backTextMarginLeft: Float) {
         builder.backTextMarginLeft = backTextMarginLeft
-        binding.backIcon.setPadding(0, 0, backTextMarginLeft.toInt(), 0)
+        binding.toolbarBackIcon.setPadding(0, 0, backTextMarginLeft.toInt(), 0)
     }
 
     /**
@@ -262,8 +262,8 @@ abstract class BaseToolbar : LinearLayout {
     fun setBackTextStyle(textSize: Float = builder.backTextSize, textColor: Int? = builder.backTextColor) {
         builder.backTextSize = textSize
         builder.backTextColor = textColor
-        binding.backText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
-        binding.backText.setTextColor(textColor ?: builder.themeColor)
+        binding.toolbarBackText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        binding.toolbarBackText.setTextColor(textColor ?: builder.themeColor)
     }
 
     /**
@@ -271,7 +271,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setToolbarPaddingLeft(paddingLeft: Float) {
         builder.toolbarPaddingLeft = paddingLeft
-        binding.contentLayout.setPadding(paddingLeft.toInt(), 0, builder.toolbarPaddingRight.toInt(), 0)
+        binding.toolbarContentLayout.setPadding(paddingLeft.toInt(), 0, builder.toolbarPaddingRight.toInt(), 0)
     }
 
     /**
@@ -279,7 +279,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setToolbarPaddingRight(paddingRight: Float) {
         builder.toolbarPaddingRight = paddingRight
-        binding.contentLayout.setPadding(builder.toolbarPaddingLeft.toInt(), 0, paddingRight.toInt(), 0)
+        binding.toolbarContentLayout.setPadding(builder.toolbarPaddingLeft.toInt(), 0, paddingRight.toInt(), 0)
     }
 
     /**
@@ -311,9 +311,9 @@ abstract class BaseToolbar : LinearLayout {
      * 设置内容外边距
      */
     private fun setContentMargin(marginLeft: Float, marginRight: Float) {
-        if (binding.middleLayout.layoutParams is MarginLayoutParams) {
-            (binding.middleLayout.layoutParams as MarginLayoutParams).leftMargin = marginLeft.toInt()
-            (binding.middleLayout.layoutParams as MarginLayoutParams).rightMargin = marginRight.toInt()
+        if (binding.toolbarMiddleLayout.layoutParams is MarginLayoutParams) {
+            (binding.toolbarMiddleLayout.layoutParams as MarginLayoutParams).leftMargin = marginLeft.toInt()
+            (binding.toolbarMiddleLayout.layoutParams as MarginLayoutParams).rightMargin = marginRight.toInt()
         }
     }
 
@@ -322,7 +322,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun showDivider(show: Boolean) {
         builder.showDivider = show
-        binding.divider.visibility = if (show) VISIBLE else GONE
+        binding.toolbarDivider.visibility = if (show) VISIBLE else GONE
     }
 
     /**
@@ -330,7 +330,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     fun setDividerColor(color: Int) {
         builder.dividerColor = color
-        binding.divider.setBackgroundColor(color)
+        binding.toolbarDivider.setBackgroundColor(color)
     }
 
 }

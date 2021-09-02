@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/inputLayout"
+        android:id="@+id/toolbarInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/lk_toolbar_search_margin_right"
@@ -19,19 +19,19 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/operationLayout"
+        app:layout_constraintRight_toLeftOf="@id/toolbarOperationLayout"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="40dp"
         tools:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/searchIcon"
+            android:id="@+id/toolbarSearchIcon"
             android:layout_width="@dimen/lk_toolbar_search_before_icon_width"
             android:layout_height="@dimen/lk_toolbar_search_before_icon_height"
             android:src="@drawable/lk_icon_toolbar_search" />
 
         <com.core.widget.edit.ClearEditText
-            android:id="@+id/clearEditText"
+            android:id="@+id/toolbarClearEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lk_toolbar_search_edit_margin_left"
@@ -44,24 +44,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/operationLayout"
+        android:id="@+id/toolbarOperationLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/inputLayout"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarInputLayout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/inputLayout">
+        app:layout_constraintTop_toTopOf="@id/toolbarInputLayout">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/operationText"
+            android:id="@+id/toolbarOperationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消"
             android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/operationIcon"
+            android:id="@+id/toolbarOperationIcon"
             android:layout_width="@dimen/lk_toolbar_operation_icon_width"
             android:layout_height="@dimen/lk_toolbar_operation_icon_width"
             android:src="@drawable/lk_icon_toolbar_right_search" />

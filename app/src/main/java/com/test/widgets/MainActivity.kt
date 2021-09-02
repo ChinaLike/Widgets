@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.core.widget.toolbar.OnToolbarListener
 import com.test.widgets.databinding.ActivityMainBinding
 
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,24 +33,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
         super.onCreate(savedInstanceState)
-
-        binding.searchToolbar.onToolbarListener = object : OnToolbarListener {
-
-            override fun onSearchCancel(): Boolean {
-                Toast.makeText(this@MainActivity, "取消", Toast.LENGTH_SHORT).show()
-                return false
-            }
-
-            override fun onSearchTextChanged(searchText: String?) {
-                Toast.makeText(this@MainActivity, searchText ?: "", Toast.LENGTH_SHORT).show()
-                super.onSearchTextChanged(searchText)
-            }
-
-            override fun search(searchText: String?) {
-                Toast.makeText(this@MainActivity, searchText ?: "", Toast.LENGTH_SHORT).show()
-            }
-
-        }
+        val binding   = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
     }

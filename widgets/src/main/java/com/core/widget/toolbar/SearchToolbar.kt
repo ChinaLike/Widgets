@@ -179,51 +179,51 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             defaultShowSearch(defaultShowSearch)
 
             //输入框前的图标
-            searchIcon.setImageDrawable(builder.searchBeforeIcon)
-            builder.searchBeforeIconColor?.let { searchIcon.setColorFilter(it) }
+            toolbarSearchIcon.setImageDrawable(builder.searchBeforeIcon)
+            builder.searchBeforeIconColor?.let { toolbarSearchIcon.setColorFilter(it) }
 
             //搜索输入框距离图标距离
             setEditMarginLeft(builder.searchEditMarginLeft)
             //设置输入框提示语
             setSearchHintTextSize(builder.searchHintTextSize)
-            clearEditText.setHintTextColor(builder.searchHintTextColor)
+            toolbarClearEditText.setHintTextColor(builder.searchHintTextColor)
             //设置输入框文本
-            clearEditText.setText(builder.searchText)
-            clearEditText.setTextColor(builder.searchTextColor)
-            clearEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.searchTextSize)
-            clearEditText.setDisabled(!searchEnable)
+            toolbarClearEditText.setText(builder.searchText)
+            toolbarClearEditText.setTextColor(builder.searchTextColor)
+            toolbarClearEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.searchTextSize)
+            toolbarClearEditText.setDisabled(!searchEnable)
             //设置操作图标
-            operationIcon.setImageDrawable(builder.operationIcon)
-            operationText.text = builder.operationText
-            operationText.setTextColor(builder.operationTextColor)
-            operationText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.operationTextSize)
-            operationLayout.visibility = if (showOperation) VISIBLE else GONE
+            toolbarOperationIcon.setImageDrawable(builder.operationIcon)
+            toolbarOperationText.text = builder.operationText
+            toolbarOperationText.setTextColor(builder.operationTextColor)
+            toolbarOperationText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.operationTextSize)
+            toolbarOperationLayout.visibility = if (showOperation) VISIBLE else GONE
             //标题
-            binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
-            binding.title.setTextColor(builder.titleTextColor ?: builder.themeColor)
-            binding.title.text = title
+            binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
+            binding.toolbarTitle.setTextColor(builder.titleTextColor ?: builder.themeColor)
+            binding.toolbarTitle.text = title
 
-            operationIcon.onDebouncedClick {
-                inputLayout.visibility = VISIBLE
-                binding.title.visibility = GONE
-                operationText.visibility = VISIBLE
-                operationIcon.visibility = GONE
+            toolbarOperationIcon.onDebouncedClick {
+                toolbarInputLayout.visibility = VISIBLE
+                binding.toolbarTitle.visibility = GONE
+                toolbarOperationText.visibility = VISIBLE
+                toolbarOperationIcon.visibility = GONE
                 showKeyboard()
             }
-            operationText.onDebouncedClick {
+            toolbarOperationText.onDebouncedClick {
                 hideKeyboard()
-                childBinding?.clearEditText?.setText("")
+                childBinding?.toolbarClearEditText?.setText("")
                 val change = onToolbarListener?.onSearchCancel()
                 if (onToolbarListener == null || change == true) {
-                    inputLayout.visibility = GONE
-                    binding.title.visibility = VISIBLE
-                    operationText.visibility = GONE
-                    operationIcon.visibility = VISIBLE
+                    toolbarInputLayout.visibility = GONE
+                    binding.toolbarTitle.visibility = VISIBLE
+                    toolbarOperationText.visibility = GONE
+                    toolbarOperationIcon.visibility = VISIBLE
                 }
             }
 
-            clearEditText.setOnTextChangeListener(this@SearchToolbar)
-            clearEditText.setOnEditorActionListener(this@SearchToolbar)
+            toolbarClearEditText.setOnTextChangeListener(this@SearchToolbar)
+            toolbarClearEditText.setOnEditorActionListener(this@SearchToolbar)
 
             setSearchBeforeIconSize(builder.searchBeforeIconWidth,builder.searchBeforeIconHeight)
             setOperationIconSize(builder.operationIconWidth,builder.operationIconHeight)
@@ -243,18 +243,18 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchBackground(drawable: Drawable?) {
         builder.searchBackground = drawable
         if (drawable is GradientDrawable) {
-            setDrawable(childBinding?.inputLayout, drawable.apply {
+            setDrawable(childBinding?.toolbarInputLayout, drawable.apply {
                 setStroke(builder.searchStrokeWidth.toInt(), builder.searchStrokeColor)
                 cornerRadius = builder.searchRadius ?: 999999F
             })
         } else if (drawable is ColorDrawable) {
-            setDrawable(childBinding?.inputLayout, GradientDrawable().apply {
+            setDrawable(childBinding?.toolbarInputLayout, GradientDrawable().apply {
                 setColor(drawable.color)
                 setStroke(builder.searchStrokeWidth.toInt(), builder.searchStrokeColor)
                 cornerRadius = builder.searchRadius ?: 999999F
             })
         }else{
-            setDrawable(childBinding?.inputLayout, GradientDrawable().apply {
+            setDrawable(childBinding?.toolbarInputLayout, GradientDrawable().apply {
                 setColor(Color.TRANSPARENT)
                 setStroke(builder.searchStrokeWidth.toInt(), builder.searchStrokeColor)
                 cornerRadius = builder.searchRadius ?: 999999F
@@ -270,7 +270,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
         val str = SpannableString(builder.searchHintText)
         val absoluteSizeSpan = AbsoluteSizeSpan(builder.searchHintTextSize.toInt(), false)
         str.setSpan(absoluteSizeSpan, 0, str.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        childBinding?.clearEditText?.hint = SpannedString(str)
+        childBinding?.toolbarClearEditText?.hint = SpannedString(str)
     }
 
     private fun setDrawable(view: View?, drawable: Drawable) {
@@ -294,10 +294,10 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     private fun showKeyboard() {
         if (searchEnable) {
-            childBinding?.clearEditText?.requestFocus()
-            childBinding?.clearEditText?.setSelection(childBinding?.clearEditText?.text?.toString()?.trim()?.length ?: 0)
+            childBinding?.toolbarClearEditText?.requestFocus()
+            childBinding?.toolbarClearEditText?.setSelection(childBinding?.toolbarClearEditText?.text?.toString()?.trim()?.length ?: 0)
             val manager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            manager.showSoftInput(childBinding?.clearEditText, 0)
+            manager.showSoftInput(childBinding?.toolbarClearEditText, 0)
         }
     }
 
@@ -320,7 +320,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             //隐藏键盘
             hideKeyboard()
-            onToolbarListener?.search(childBinding?.clearEditText?.text?.toString())
+            onToolbarListener?.search(childBinding?.toolbarClearEditText?.text?.toString())
             return true
         }
         return false
@@ -330,7 +330,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      * 设置标题
      */
     fun setTitle(title: String?) {
-        binding.title.text = title
+        binding.toolbarTitle.text = title
     }
 
     /**
@@ -338,7 +338,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setTitleTextSize(@Dimension(unit = Dimension.PX) textSize: Float) {
         builder.titleTextSize = textSize
-        binding.title.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
     }
 
     /**
@@ -347,7 +347,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setTitleTextColor(@ColorInt color: Int) {
         builder.titleTextColor = color
-        binding.title.setTextColor(color)
+        binding.toolbarTitle.setTextColor(color)
     }
 
     /**
@@ -356,7 +356,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setTitleTextStyle(style: Int) {
         builder.titleTextStyle = style
-        binding.title.typeface = Typeface.defaultFromStyle(style)
+        binding.toolbarTitle.typeface = Typeface.defaultFromStyle(style)
     }
 
 
@@ -430,11 +430,11 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
 
     private fun setSearchLayoutParams() {
         childBinding?.apply {
-            inputLayout?.layoutParams = ConstraintLayout.LayoutParams(0, builder.searchHeight.toInt()).apply {
+            toolbarInputLayout?.layoutParams = ConstraintLayout.LayoutParams(0, builder.searchHeight.toInt()).apply {
                 bottomToBottom = ConstraintSet.PARENT_ID
                 leftToLeft = ConstraintSet.PARENT_ID
                 topToTop = ConstraintSet.PARENT_ID
-                rightToLeft = operationLayout.id
+                rightToLeft = toolbarOperationLayout.id
                 rightMargin = if (showOperation) builder.searchMarginRight.toInt() else 0
             }
         }
@@ -444,7 +444,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      * 设置内边距
      */
     private fun setSearchPadding() {
-        childBinding?.inputLayout?.setPadding(builder.searchPaddingLeft.toInt(), 0, builder.searchPaddingRight.toInt(), 0)
+        childBinding?.toolbarInputLayout?.setPadding(builder.searchPaddingLeft.toInt(), 0, builder.searchPaddingRight.toInt(), 0)
     }
 
     /**
@@ -454,14 +454,14 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun defaultShowSearch(show: Boolean) {
         defaultShowSearch = show
         childBinding?.apply {
-            binding.title.visibility = if (defaultShowSearch) GONE else VISIBLE
-            inputLayout.visibility = if (defaultShowSearch) VISIBLE else GONE
+            binding.toolbarTitle.visibility = if (defaultShowSearch) GONE else VISIBLE
+            toolbarInputLayout.visibility = if (defaultShowSearch) VISIBLE else GONE
             if (defaultShowSearch) {
-                operationText.visibility = VISIBLE
-                operationIcon.visibility = GONE
+                toolbarOperationText.visibility = VISIBLE
+                toolbarOperationIcon.visibility = GONE
             } else {
-                operationText.visibility = GONE
-                operationIcon.visibility = VISIBLE
+                toolbarOperationText.visibility = GONE
+                toolbarOperationIcon.visibility = VISIBLE
             }
         }
 
@@ -473,7 +473,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchBeforeIcon(drawable: Drawable) {
         builder.searchBeforeIcon = drawable
-        childBinding?.searchIcon?.setImageDrawable(drawable)
+        childBinding?.toolbarSearchIcon?.setImageDrawable(drawable)
     }
 
     /**
@@ -484,8 +484,8 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchBeforeIconSize(@Dimension(unit = Dimension.PX) width: Float,@Dimension(unit = Dimension.PX) height: Float){
         builder.searchBeforeIconWidth = width
         builder.searchBeforeIconHeight = height
-        childBinding?.searchIcon?.layoutParams?.width = width.toInt()
-        childBinding?.searchIcon?.layoutParams?.height = height.toInt()
+        childBinding?.toolbarSearchIcon?.layoutParams?.width = width.toInt()
+        childBinding?.toolbarSearchIcon?.layoutParams?.height = height.toInt()
     }
 
     /**
@@ -494,7 +494,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchBeforeIconColor(@ColorInt color: Int) {
         builder.searchBeforeIconColor = color
-        childBinding?.searchIcon?.setColorFilter(color)
+        childBinding?.toolbarSearchIcon?.setColorFilter(color)
     }
 
     /**
@@ -503,7 +503,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setEditMarginLeft(@Dimension(unit = Dimension.PX) marginLeft: Float) {
         builder.searchEditMarginLeft = marginLeft
-        val layoutParams = childBinding?.clearEditText?.layoutParams
+        val layoutParams = childBinding?.toolbarClearEditText?.layoutParams
         if (layoutParams is MarginLayoutParams) {
             layoutParams.leftMargin = builder.searchEditMarginLeft.toInt()
         }
@@ -524,7 +524,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchEnable(enable: Boolean) {
         searchEnable = enable
-        childBinding?.clearEditText?.setDisabled(!searchEnable)
+        childBinding?.toolbarClearEditText?.setDisabled(!searchEnable)
     }
 
     /**
@@ -533,7 +533,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchHintTextColor(@ColorInt hintTextColor: Int) {
         builder.searchHintTextColor = hintTextColor
-        childBinding?.clearEditText?.setHintTextColor(hintTextColor)
+        childBinding?.toolbarClearEditText?.setHintTextColor(hintTextColor)
     }
 
     /**
@@ -542,7 +542,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchText(searchText: String?) {
         builder.searchText = searchText
-        childBinding?.clearEditText?.setText(searchText)
+        childBinding?.toolbarClearEditText?.setText(searchText)
     }
 
     /**
@@ -551,7 +551,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchTextSize(@Dimension(unit = Dimension.PX) textSize: Float) {
         builder.searchTextSize = textSize
-        childBinding?.clearEditText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        childBinding?.toolbarClearEditText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
     }
 
     /**
@@ -560,7 +560,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setSearchTextColor(@ColorInt textColor: Int) {
         builder.searchTextColor = textColor
-        childBinding?.clearEditText?.setTextColor(textColor)
+        childBinding?.toolbarClearEditText?.setTextColor(textColor)
     }
 
     /**
@@ -569,7 +569,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun showOperation(show: Boolean) {
         showOperation = show
-        childBinding?.operationLayout?.visibility = if (showOperation) VISIBLE else GONE
+        childBinding?.toolbarOperationLayout?.visibility = if (showOperation) VISIBLE else GONE
     }
 
     /**
@@ -578,7 +578,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setOperationIcon(drawable: Drawable) {
         builder.operationIcon = drawable
-        childBinding?.operationIcon?.setImageDrawable(drawable)
+        childBinding?.toolbarOperationIcon?.setImageDrawable(drawable)
     }
 
     /**
@@ -589,8 +589,8 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setOperationIconSize(@Dimension(unit = Dimension.PX) width: Float,@Dimension(unit = Dimension.PX) height: Float){
         builder.operationIconWidth = width
         builder.operationIconHeight = height
-        childBinding?.operationIcon?.layoutParams?.width = width.toInt()
-        childBinding?.operationIcon?.layoutParams?.height = height.toInt()
+        childBinding?.toolbarOperationIcon?.layoutParams?.width = width.toInt()
+        childBinding?.toolbarOperationIcon?.layoutParams?.height = height.toInt()
     }
 
     /**
@@ -599,7 +599,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setOperationText(text: String) {
         builder.operationText = text
-        childBinding?.operationText?.text = text
+        childBinding?.toolbarOperationText?.text = text
     }
 
     /**
@@ -608,7 +608,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setOperationTextSize(@Dimension(unit = Dimension.PX) textSize: Float) {
         builder.operationTextSize = textSize
-        childBinding?.operationText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        childBinding?.toolbarOperationText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
     }
 
     /**
@@ -617,7 +617,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     fun setOperationTextColor(@ColorInt textColor: Int) {
         builder.operationTextColor = textColor
-        childBinding?.operationText?.setTextColor(textColor)
+        childBinding?.toolbarOperationText?.setTextColor(textColor)
     }
 
 }
