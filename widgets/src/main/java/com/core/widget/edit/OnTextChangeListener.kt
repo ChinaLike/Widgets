@@ -1,4 +1,4 @@
-package com.tsy.widget.edit
+package com.core.widget.edit
 
 import android.text.Editable
 

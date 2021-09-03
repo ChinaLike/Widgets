@@ -13,8 +13,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.core.util.DensityUtil
 import com.core.widget.R
-import com.tsy.widget.edit.OnClearListener
-import com.tsy.widget.edit.OnTextChangeListener
 
 /**
  * 带清除按钮的输入框

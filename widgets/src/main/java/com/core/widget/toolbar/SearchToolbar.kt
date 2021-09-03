@@ -26,10 +26,9 @@ import androidx.annotation.Dimension
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.core.ex.onDebouncedClick
-import com.core.util.KeyboardUtil
 import com.core.widget.R
 import com.core.widget.databinding.LkToolbarSearchBinding
-import com.tsy.widget.edit.OnTextChangeListener
+import com.core.widget.edit.OnTextChangeListener
 
 /**
  * 带搜索的ToolBar的布局
