@@ -1,6 +1,7 @@
 package com.core.widget.toolbar
 
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 
 /**
  * Toolbar监听
@@ -27,7 +28,7 @@ interface OnToolbarListener {
     /**
      * 菜单按钮被点击，快速定义的菜单
      */
-    fun onMenuClick(view: AppCompatImageView) {
+    fun onMenuClick(imageView: AppCompatImageView?,textView: AppCompatTextView?) {
 
     }
 

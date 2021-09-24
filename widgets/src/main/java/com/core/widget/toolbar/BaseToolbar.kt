@@ -285,6 +285,9 @@ abstract class BaseToolbar : LinearLayout {
         binding.toolbarRightLayout.apply {
             removeAllViews()
             addView(contentLayout)
+            onDebouncedClick {
+                onToolbarListener?.onMenuClick(imageView, textView)
+            }
         }
     }
 
