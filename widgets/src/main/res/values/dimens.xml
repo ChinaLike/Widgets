@@ -21,4 +21,6 @@
     <dimen name="lk_toolbar_search_before_icon_height">17dp</dimen>
     <dimen name="lk_toolbar_operation_icon_width">20dp</dimen>
     <dimen name="lk_toolbar_operation_icon_height">20dp</dimen>
+    <dimen name="lk_toolbar_menu_text_size">14sp</dimen>
+    <dimen name="lk_toolbar_menu_text_margin_icon">5dp</dimen>
 </resources>

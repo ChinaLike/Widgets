@@ -3,10 +3,14 @@ package com.core.widget.toolbar
 import android.app.Activity
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -14,6 +18,7 @@ import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.core.ex.onDebouncedClick
@@ -42,6 +47,11 @@ abstract class BaseToolbar : LinearLayout {
 
     @DrawableRes
     private var simpleMenuDrawable: Int? = null
+
+    /**
+     * 菜单文字
+     */
+    private var simpleMenuText: String? = ""
 
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
@@ -107,6 +117,22 @@ abstract class BaseToolbar : LinearLayout {
                     R.styleable.BaseToolbar_lk_toolbar_menu_icon -> {
                         simpleMenuDrawable = getResourceId(attr, 0)
                     }
+                    R.styleable.BaseToolbar_lk_toolbar_menu_text -> {
+                        simpleMenuText = getString(attr)
+                    }
+
+                    R.styleable.BaseToolbar_lk_toolbar_menu_text_size -> {
+                        builder.menuTextSize = getDimension(attr, builder.menuTextSize)
+                    }
+                    R.styleable.BaseToolbar_lk_toolbar_menu_text_color -> {
+                        builder.menuTextColor = getColor(attr, builder.menuTextColor)
+                    }
+                    R.styleable.BaseToolbar_lk_toolbar_menu_text_location -> {
+                        builder.menuTextLocation = getInt(attr, builder.menuTextLocation)
+                    }
+                    R.styleable.BaseToolbar_lk_toolbar_menu_text_margin_icon -> {
+                        builder.menuTextMarginIcon = getDimension(attr, builder.menuTextMarginIcon)
+                    }
                 }
             }
             recycle()
@@ -127,7 +153,7 @@ abstract class BaseToolbar : LinearLayout {
 
         setContentMargin(builder.toolbarContentMarginLeft, builder.toolbarContentMarginRight)
 
-        simpleMenuDrawable?.let { setMenuResource(it) }
+        customMenu()
         //分割线
         binding.toolbarDivider.setBackgroundColor(builder.dividerColor)
         binding.toolbarDivider.visibility = if (builder.showDivider) VISIBLE else GONE
@@ -186,17 +212,90 @@ abstract class BaseToolbar : LinearLayout {
     }
 
     /**
-     * 设置右侧图标，仅支持一个图标的按钮，如果是多个，添加自定义View
+     * 自定义Menu
      */
-    fun setMenuResource(@DrawableRes resId: Int) {
+    private fun customMenu() {
+        if (simpleMenuDrawable == null && TextUtils.isEmpty(simpleMenuText)) {
+            return
+        }
+        val contentLayout = LinearLayout(context).apply {
+            layoutParams = LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
+            gravity = Gravity.CENTER
+            dividerDrawable = shape(builder.menuTextMarginIcon)
+            showDividers = SHOW_DIVIDER_MIDDLE
+        }
+
+        //图片
         val imageView = AppCompatImageView(context).apply {
-            layoutParams = ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
-            setImageResource(resId)
+            layoutParams = LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
+        }
+        //文字
+        val textView = AppCompatTextView(context).apply {
+            layoutParams = LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
+            setTextSize(TypedValue.COMPLEX_UNIT_PX,builder.menuTextSize)
+            setTextColor(builder.menuTextColor)
+        }
+
+        when (builder.menuTextLocation) {
+            Location.TOP -> {
+                contentLayout.orientation = VERTICAL
+                simpleMenuText?.let {
+                    textView.text = it
+                    contentLayout.addView(textView)
+                }
+                simpleMenuDrawable?.let {
+                    imageView.setImageResource(it)
+                    contentLayout.addView(imageView)
+                }
+            }
+            Location.LEFT -> {
+                contentLayout.orientation = HORIZONTAL
+                simpleMenuText?.let {
+                    textView.text = it
+                    contentLayout.addView(textView)
+                }
+                simpleMenuDrawable?.let {
+                    imageView.setImageResource(it)
+                    contentLayout.addView(imageView)
+                }
+            }
+            Location.RIGHT -> {
+                contentLayout.orientation = HORIZONTAL
+                simpleMenuDrawable?.let {
+                    imageView.setImageResource(it)
+                    contentLayout.addView(imageView)
+                }
+                simpleMenuText?.let {
+                    textView.text = it
+                    contentLayout.addView(textView)
+                }
+            }
+            else -> {
+                contentLayout.orientation = VERTICAL
+                simpleMenuDrawable?.let {
+                    imageView.setImageResource(it)
+                    contentLayout.addView(imageView)
+                }
+                simpleMenuText?.let {
+                    textView.text = it
+                    contentLayout.addView(textView)
+                }
+            }
         }
         binding.toolbarRightLayout.apply {
             removeAllViews()
-            addView(imageView)
+            addView(contentLayout)
         }
+    }
+
+    /**
+     * 设置右侧图标，仅支持一个图标的按钮，如果是多个，添加自定义View
+     */
+    @JvmOverloads
+    fun setMenuResource(@DrawableRes resId: Int? = null, text: String? = null) {
+        this.simpleMenuDrawable = resId
+        this.simpleMenuText = text
+        customMenu()
     }
 
     /**
@@ -331,6 +430,16 @@ abstract class BaseToolbar : LinearLayout {
     fun setDividerColor(color: Int) {
         builder.dividerColor = color
         binding.toolbarDivider.setBackgroundColor(color)
+    }
+
+    /**
+     * 自定义Shape
+     */
+    private fun shape(size: Float): GradientDrawable {
+        return GradientDrawable().apply {
+            this.setSize(size.toInt(), size.toInt())
+            this.setColor(Color.TRANSPARENT)
+        }
     }
 
 }

@@ -41,6 +41,16 @@
     <attr name="lk_show_divider" format="boolean" />
     <attr name="lk_divider_color" format="color" />
     <attr name="lk_toolbar_menu_icon" format="reference" />
+    <attr name="lk_toolbar_menu_text" format="string" />
+    <attr name="lk_toolbar_menu_text_size" format="dimension" />
+    <attr name="lk_toolbar_menu_text_color" format="color" />
+    <attr name="lk_toolbar_menu_text_margin_icon" format="dimension" />
+    <attr name="lk_toolbar_menu_text_location">
+        <enum name="top" value="1"/>
+        <enum name="bottom" value="2"/>
+        <enum name="left" value="3"/>
+        <enum name="right" value="4"/>
+    </attr>
 
     <declare-styleable name="BaseToolbar">
         <attr name="lk_show_left_layout" />
@@ -57,6 +67,11 @@
         <attr name="lk_content_margin_left" />
         <attr name="lk_content_margin_right" />
         <attr name="lk_toolbar_menu_icon" />
+        <attr name="lk_toolbar_menu_text" />
+        <attr name="lk_toolbar_menu_text_size" />
+        <attr name="lk_toolbar_menu_text_color" />
+        <attr name="lk_toolbar_menu_text_margin_icon" />
+        <attr name="lk_toolbar_menu_text_location" />
         <attr name="lk_show_divider" />
         <attr name="lk_divider_color" />
     </declare-styleable>
@@ -112,6 +127,13 @@
             <enum name="right" value="2" />
             <enum name="left" value="3" />
         </attr>
+    </declare-styleable>
+
+    <!--  侧滑  -->
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
     </declare-styleable>
 
 </resources>

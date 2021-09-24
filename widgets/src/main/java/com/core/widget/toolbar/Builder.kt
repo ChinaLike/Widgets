@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
+import androidx.core.content.ContextCompat
 import com.core.widget.R
 
 /**
@@ -256,5 +257,28 @@ internal class Builder constructor(context: Context) {
      */
     @ColorInt
     var operationTextColor: Int = toolbarConfig.operationTextColor
+
+    /**
+     * 菜单文字大小
+     */
+    @Dimension(unit = Dimension.PX)
+    var menuTextSize:Float = toolbarConfig.menuTextSize
+
+    /**
+     * 菜单文字颜色
+     */
+    @ColorInt
+    var menuTextColor:Int = toolbarConfig.menuTextColor
+
+    /**
+     * 菜单文字位置
+     */
+    var menuTextLocation:Int = toolbarConfig.menuTextLocation
+
+    /**
+     * 文字距离图片
+     */
+    @Dimension(unit = Dimension.PX)
+    var menuTextMarginIcon:Float = toolbarConfig.menuTextMarginIcon
 
 }

@@ -10,5 +10,6 @@
     <color name="lk_toolbar_search_hint_color">#9D9D9D</color>
     <color name="lk_toolbar_search_text_color">#666666</color>
     <color name="lk_toolbar_operation_text_color">#666666</color>
+    <color name="lk_toolbar_menu_text_color">#333333</color>
 
 </resources>

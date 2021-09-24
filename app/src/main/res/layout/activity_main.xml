@@ -13,6 +13,9 @@
         android:layout_height="wrap_content"
         android:background="#00FF00"
         app:layout_constraintTop_toTopOf="parent"
+        app:lk_show_right_layout="true"
+        app:lk_toolbar_menu_text="测试"
+        app:lk_toolbar_menu_icon="@drawable/lk_icon_toolbar_search"
         app:lk_show_left_layout="true" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

@@ -256,6 +256,29 @@ class ToolbarConfig private constructor(context: Context) {
     @ColorInt
     var operationTextColor: Int = ContextCompat.getColor(context, R.color.lk_toolbar_operation_text_color)
 
+    /**
+     * 菜单文字大小
+     */
+    @Dimension(unit = Dimension.PX)
+    var menuTextSize:Float = context.resources.getDimension(R.dimen.lk_toolbar_menu_text_size)
+
+    /**
+     * 菜单文字颜色
+     */
+    @ColorInt
+    var menuTextColor:Int = ContextCompat.getColor(context, R.color.lk_toolbar_menu_text_color)
+
+    /**
+     * 菜单文字位置
+     */
+    var menuTextLocation:Int = Location.BOTTOM
+
+    /**
+     * 文字距离图片
+     */
+    @Dimension(unit = Dimension.PX)
+    var menuTextMarginIcon:Float = context.resources.getDimension(R.dimen.lk_toolbar_menu_text_margin_icon)
+
     companion object {
 
         private lateinit var context: Context
