@@ -14,7 +14,7 @@ import kotlin.math.abs
 
 
 /**
- * 侧滑布局
+ * 侧滑布局(仿QQ消息删除)
  * @author like
  * @date 9/24/21 3:22 PM
  */

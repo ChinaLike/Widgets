@@ -5,9 +5,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.core.widget.toolbar.OnToolbarListener
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.core.widget.recyclerview.PagerGridLayoutManager
+import com.core.widget.recyclerview.PagerGridSnapHelper
+import com.test.widgets.adapter.PagerGridAdapter
 import com.test.widgets.databinding.ActivityMainBinding
 
 
@@ -22,20 +25,35 @@ class MainActivity : AppCompatActivity() {
                 val window: Window = window
                 val attributes: WindowManager.LayoutParams = window.getAttributes()
                 attributes.flags = attributes.flags or flagTranslucentNavigation
-                window.setAttributes(attributes)
+                window.attributes = attributes
                 getWindow().statusBarColor = Color.TRANSPARENT
             } else {
                 val window: Window = window
                 val attributes: WindowManager.LayoutParams = window.getAttributes()
                 attributes.flags = attributes.flags or (flagTranslucentStatus or flagTranslucentNavigation)
-                window.setAttributes(attributes)
+                window.attributes = attributes
             }
         }
 
         super.onCreate(savedInstanceState)
-        val binding   = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        recyclerView.layoutManager = PagerGridLayoutManager(4, 4)
+        PagerGridSnapHelper().attachToRecyclerView(recyclerView)
+        recyclerView.adapter = PagerGridAdapter(this, getData())
 
 
     }
+
+    private fun getData(): MutableList<Int> {
+        val list = mutableListOf<Int>()
+        for (i in 0 until 12) {
+            list.add(i)
+        }
+        return list
+    }
+
 }
