@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    tools:context=".PagerGridActivity">
+
+    <com.core.widget.toolbar.SimpleToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lk_toolbar_title="分页网格布局" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="代码设置属性"
+                android:textStyle="bold" />
+
+            <com.core.widget.pager.PagerGridView
+                android:id="@+id/codePagerGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:minHeight="100dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="XML设置属性"
+                android:textStyle="bold" />
+
+            <com.core.widget.pager.PagerGridView
+                android:id="@+id/xmlPagerGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lk_pager_grid_column="3"
+                app:lk_pager_grid_row="5"
+                app:lk_pager_grid_horizontal_divider="10dp"
+                app:lk_pager_grid_vertical_divider="10dp"
+                tools:minHeight="100dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="默认选中第二页"
+                android:textStyle="bold" />
+
+            <com.core.widget.pager.PagerGridView
+                android:id="@+id/defaultSelectPagerGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lk_pager_grid_column="2"
+                app:lk_pager_grid_row="5"
+                app:lk_pager_grid_default_select="1"
+                app:lk_pager_grid_horizontal_divider="10dp"
+                app:lk_pager_grid_vertical_divider="10dp"
+                tools:minHeight="100dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="显示指示器"
+                android:textStyle="bold" />
+
+            <com.core.widget.pager.PagerGridView
+                android:id="@+id/indicatorSelectPagerGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:lk_pager_grid_column="2"
+                app:lk_pager_grid_row="5"
+                app:lk_pager_grid_show_indicator="true"
+                app:lk_indicator_color="#C5DDE8"
+                app:lk_indicator_select_color="#03A9F4"
+                app:lk_pager_grid_default_select="1"
+                app:lk_pager_grid_horizontal_divider="10dp"
+                app:lk_pager_grid_vertical_divider="10dp"
+                tools:minHeight="100dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

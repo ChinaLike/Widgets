@@ -2,6 +2,30 @@
 <resources>
 
     <attr name="lk_color" format="color" />
+    <!--指示器-->
+    <attr name="lk_indicator_color" format="color" />
+    <attr name="lk_indicator_select_color" format="color" />
+    <attr name="lk_indicator_type">
+        <enum name="circle" value="0" />
+        <enum name="custom" value="1" />
+        <enum name="scroll" value="2" />
+    </attr>
+    <attr name="lk_indicator_width" format="dimension" />
+    <attr name="lk_indicator_height" format="dimension" />
+    <attr name="lk_indicator_selected_width" format="dimension" />
+    <attr name="lk_indicator_selected_height" format="dimension" />
+    <attr name="lk_indicator_space" format="dimension" />
+    <attr name="lk_indicator_radius" format="dimension" />
+    <attr name="lk_indicator_gravity">
+        <enum name="left" value="0" />
+        <enum name="center" value="1" />
+        <enum name="right" value="2" />
+    </attr>
+    <attr name="lk_indicator_margin" format="dimension" />
+    <attr name="lk_indicator_margin_left" format="dimension" />
+    <attr name="lk_indicator_margin_top" format="dimension" />
+    <attr name="lk_indicator_margin_right" format="dimension" />
+    <attr name="lk_indicator_margin_bottom" format="dimension" />
 
     <!--  带清除按钮的编辑框  -->
     <declare-styleable name="ClearEditText">
@@ -46,10 +70,10 @@
     <attr name="lk_toolbar_menu_text_color" format="color" />
     <attr name="lk_toolbar_menu_text_margin_icon" format="dimension" />
     <attr name="lk_toolbar_menu_text_location">
-        <enum name="top" value="1"/>
-        <enum name="bottom" value="2"/>
-        <enum name="left" value="3"/>
-        <enum name="right" value="4"/>
+        <enum name="top" value="1" />
+        <enum name="bottom" value="2" />
+        <enum name="left" value="3" />
+        <enum name="right" value="4" />
     </attr>
 
     <declare-styleable name="BaseToolbar">
@@ -134,6 +158,37 @@
         <attr name="swipeEnable" format="boolean" />
         <attr name="ios" format="boolean" />
         <attr name="leftSwipe" format="boolean" />
+    </declare-styleable>
+
+    <!--  分页网格布局  -->
+    <declare-styleable name="PagerGridView">
+        <attr name="lk_pager_grid_row" format="integer" />
+        <attr name="lk_pager_grid_column" format="integer" />
+        <attr name="lk_pager_grid_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="lk_pager_grid_horizontal_divider" format="dimension" />
+        <attr name="lk_pager_grid_vertical_divider" format="dimension" />
+        <attr name="lk_pager_grid_default_select" format="integer" />
+        <!--指示器有关-->
+        <attr name="lk_pager_grid_show_indicator" format="boolean" />
+        <attr name="lk_indicator_color" />
+        <attr name="lk_indicator_select_color" />
+        <attr name="lk_indicator_type" />
+        <attr name="lk_indicator_width" />
+        <attr name="lk_indicator_height" />
+        <attr name="lk_indicator_selected_width" />
+        <attr name="lk_indicator_selected_height" />
+        <attr name="lk_indicator_space" />
+        <attr name="lk_indicator_radius" />
+        <attr name="lk_indicator_gravity" />
+        <attr name="lk_indicator_margin" />
+        <attr name="lk_indicator_margin_left" />
+        <attr name="lk_indicator_margin_top" />
+        <attr name="lk_indicator_margin_right" />
+        <attr name="lk_indicator_margin_bottom" />
+
     </declare-styleable>
 
 </resources>

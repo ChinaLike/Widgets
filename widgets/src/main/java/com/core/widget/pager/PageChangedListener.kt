@@ -1,4 +1,4 @@
-package com.core.widget.recyclerview
+package com.core.widget.pager
 
 /**
  *

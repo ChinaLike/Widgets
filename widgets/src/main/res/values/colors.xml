@@ -12,4 +12,8 @@
     <color name="lk_toolbar_operation_text_color">#666666</color>
     <color name="lk_toolbar_menu_text_color">#333333</color>
 
+    <!--  指示器颜色  -->
+    <color name="lk_indicator_color">#88FFFFFF</color>
+    <color name="lk_indicator_selected_color">#88000000</color>
+
 </resources>
