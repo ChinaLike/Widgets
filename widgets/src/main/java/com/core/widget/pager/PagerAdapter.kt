@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.core.widget.R
 import com.core.widget.divider.XGridDividerDecoration
@@ -15,13 +14,13 @@ import com.core.widget.divider.XGridDividerDecoration
  * @author like
  * @date 10/13/21 1:41 PM
  */
-internal class PagerAdapter(private val context: Context,private val dataList: MutableList<MutableList<View>>) :
+internal class PagerAdapter(private val context: Context, private val dataList: MutableList<MutableList<View>>) :
     RecyclerView.Adapter<PagerAdapter.PagerViewHolder>() {
 
     /**
      * Item点击回调
      */
-    var onItemClickCallback:OnItemClickCallback? = null
+    var onItemClickCallback: OnItemClickCallback? = null
 
     /**
      * 水平分割线宽度
@@ -36,7 +35,7 @@ internal class PagerAdapter(private val context: Context,private val dataList: M
     /**
      * 一页显示的行数
      */
-    var spanSize:Int = 0
+    var spanSize: Int = 0
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
@@ -87,16 +86,16 @@ internal class PagerAdapter(private val context: Context,private val dataList: M
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        if (spanSize <= 0){
+        if (spanSize <= 0) {
             return
         }
         val bean: MutableList<View> = dataList[position]
-        val adapter: GridAdapter = GridAdapter(position,bean).apply {
+        val adapter: GridAdapter = GridAdapter(position, bean).apply {
             onItemClickCallback = this@PagerAdapter.onItemClickCallback
         }
         if (holder.recyclerView.layoutManager == null) {
-            holder.recyclerView.layoutManager = GridLayoutManager(context, spanSize)
-            holder.recyclerView.addItemDecoration(XGridDividerDecoration(horizontalDivider,verticalDivider, Color.TRANSPARENT))
+            holder.recyclerView.layoutManager = PagerGridLayoutManager(context, spanSize)
+            holder.recyclerView.addItemDecoration(XGridDividerDecoration(horizontalDivider, verticalDivider, Color.TRANSPARENT))
         }
         holder.recyclerView.adapter = adapter
     }

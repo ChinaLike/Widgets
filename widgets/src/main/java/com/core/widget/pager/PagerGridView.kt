@@ -248,7 +248,9 @@ class PagerGridView : LinearLayout, OnItemClickCallback {
         //分配到对应每一页
         pageView.clear()
         splitList()?.let {
-            viewPager.offscreenPageLimit = pageSize
+            if (pageSize > 0) {
+                viewPager.offscreenPageLimit = pageSize
+            }
             if (showIndicator) {
                 indicatorView.onPageSizeChanged(pageSize)
             }
