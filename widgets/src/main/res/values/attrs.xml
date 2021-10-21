@@ -121,6 +121,7 @@
         <attr name="lk_search_padding_right" format="dimension" />
         <attr name="lk_search_margin_right" format="dimension" />
         <attr name="lk_default_show_search" format="boolean" />
+        <attr name="lk_show_search_before_icon" format="boolean"/>
         <attr name="lk_search_before_icon" format="reference" />
         <attr name="lk_search_before_icon_color" format="color" />
         <attr name="lk_search_before_icon_width" format="dimension" />

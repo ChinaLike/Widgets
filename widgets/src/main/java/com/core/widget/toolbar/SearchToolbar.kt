@@ -57,7 +57,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     private var title: String? = null
 
     @JvmOverloads
-    constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int =0) : super(context, attributeSet, defStyleAttr) {
+    constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
         title = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
 
         initAttr(context, attributeSet)
@@ -107,11 +107,11 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                     R.styleable.SearchToolbar_lk_search_before_icon -> {
                         builder.searchBeforeIcon = getDrawable(attr)
                     }
-                    R.styleable.SearchToolbar_lk_search_before_icon_width->{
-                        builder.searchBeforeIconWidth = getDimension(attr,builder.searchBeforeIconWidth)
+                    R.styleable.SearchToolbar_lk_search_before_icon_width -> {
+                        builder.searchBeforeIconWidth = getDimension(attr, builder.searchBeforeIconWidth)
                     }
-                    R.styleable.SearchToolbar_lk_search_before_icon_height->{
-                        builder.searchBeforeIconHeight = getDimension(attr,builder.searchBeforeIconHeight)
+                    R.styleable.SearchToolbar_lk_search_before_icon_height -> {
+                        builder.searchBeforeIconHeight = getDimension(attr, builder.searchBeforeIconHeight)
                     }
                     R.styleable.SearchToolbar_lk_search_before_icon_color -> {
                         builder.searchBeforeIconColor = getColor(attr, builder.themeColor)
@@ -146,11 +146,11 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                     R.styleable.SearchToolbar_lk_operation_icon -> {
                         builder.operationIcon = getDrawable(attr)
                     }
-                    R.styleable.SearchToolbar_lk_operation_icon_width->{
-                        builder.operationIconWidth = getDimension(attr,builder.operationIconWidth)
+                    R.styleable.SearchToolbar_lk_operation_icon_width -> {
+                        builder.operationIconWidth = getDimension(attr, builder.operationIconWidth)
                     }
-                    R.styleable.SearchToolbar_lk_operation_icon_height->{
-                        builder.operationIconHeight = getDimension(attr,builder.operationIconHeight)
+                    R.styleable.SearchToolbar_lk_operation_icon_height -> {
+                        builder.operationIconHeight = getDimension(attr, builder.operationIconHeight)
                     }
                     R.styleable.SearchToolbar_lk_operation_text -> {
                         builder.operationText = getString(attr)
@@ -163,6 +163,9 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                     }
                     R.styleable.SearchToolbar_android_textStyle -> {
                         builder.titleTextStyle = getInt(attr, builder.titleTextStyle)
+                    }
+                    R.styleable.SearchToolbar_lk_show_search_before_icon -> {
+                        builder.showSearchBeforeIcon = getBoolean(attr, builder.showSearchBeforeIcon)
                     }
                 }
             }
@@ -180,6 +183,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             //输入框前的图标
             toolbarSearchIcon.setImageDrawable(builder.searchBeforeIcon)
             builder.searchBeforeIconColor?.let { toolbarSearchIcon.setColorFilter(it) }
+            toolbarSearchIcon.visibility = if (builder.showSearchBeforeIcon) View.VISIBLE else View.GONE
 
             //搜索输入框距离图标距离
             setEditMarginLeft(builder.searchEditMarginLeft)
@@ -224,8 +228,8 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             toolbarClearEditText.setOnTextChangeListener(this@SearchToolbar)
             toolbarClearEditText.setOnEditorActionListener(this@SearchToolbar)
 
-            setSearchBeforeIconSize(builder.searchBeforeIconWidth,builder.searchBeforeIconHeight)
-            setOperationIconSize(builder.operationIconWidth,builder.operationIconHeight)
+            setSearchBeforeIconSize(builder.searchBeforeIconWidth, builder.searchBeforeIconHeight)
+            setOperationIconSize(builder.operationIconWidth, builder.operationIconHeight)
         }
     }
 
@@ -252,7 +256,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                 setStroke(builder.searchStrokeWidth.toInt(), builder.searchStrokeColor)
                 cornerRadius = builder.searchRadius ?: 999999F
             })
-        }else{
+        } else {
             setDrawable(childBinding?.toolbarInputLayout, GradientDrawable().apply {
                 setColor(Color.TRANSPARENT)
                 setStroke(builder.searchStrokeWidth.toInt(), builder.searchStrokeColor)
@@ -480,7 +484,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      * @return [width] 宽度
      * @return [height] 高度
      */
-    fun setSearchBeforeIconSize(@Dimension(unit = Dimension.PX) width: Float,@Dimension(unit = Dimension.PX) height: Float){
+    fun setSearchBeforeIconSize(@Dimension(unit = Dimension.PX) width: Float, @Dimension(unit = Dimension.PX) height: Float) {
         builder.searchBeforeIconWidth = width
         builder.searchBeforeIconHeight = height
         childBinding?.toolbarSearchIcon?.layoutParams?.width = width.toInt()
@@ -585,7 +589,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      * @return [width] 宽度
      * @return [height] 高度
      */
-    fun setOperationIconSize(@Dimension(unit = Dimension.PX) width: Float,@Dimension(unit = Dimension.PX) height: Float){
+    fun setOperationIconSize(@Dimension(unit = Dimension.PX) width: Float, @Dimension(unit = Dimension.PX) height: Float) {
         builder.operationIconWidth = width
         builder.operationIconHeight = height
         childBinding?.toolbarOperationIcon?.layoutParams?.width = width.toInt()

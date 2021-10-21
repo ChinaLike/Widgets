@@ -12,7 +12,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         //导航栏
         binding.toolbarBtn.onDebouncedClick {
-
+            startActivity(Intent(this, ToolbarActivity::class.java))
         }
         //分页网格
         binding.pagerGridBtn.onDebouncedClick {

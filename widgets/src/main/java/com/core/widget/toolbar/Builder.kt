@@ -281,4 +281,9 @@ internal class Builder constructor(context: Context) {
     @Dimension(unit = Dimension.PX)
     var menuTextMarginIcon:Float = toolbarConfig.menuTextMarginIcon
 
+    /**
+     * 显示搜索框前面的图标
+     */
+    var showSearchBeforeIcon:Boolean = toolbarConfig.showSearchBeforeIcon
+
 }

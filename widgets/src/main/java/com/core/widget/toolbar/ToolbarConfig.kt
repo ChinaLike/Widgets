@@ -279,6 +279,11 @@ class ToolbarConfig private constructor(context: Context) {
     @Dimension(unit = Dimension.PX)
     var menuTextMarginIcon:Float = context.resources.getDimension(R.dimen.lk_toolbar_menu_text_margin_icon)
 
+    /**
+     * 显示搜索框前面的图标
+     */
+    var showSearchBeforeIcon:Boolean = true
+
     companion object {
 
         private lateinit var context: Context

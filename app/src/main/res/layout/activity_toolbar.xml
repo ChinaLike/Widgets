@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ToolbarActivity">
+
+    <com.core.widget.toolbar.SimpleToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lk_toolbar_title="导航栏" />
+
+    <com.core.widget.toolbar.SearchToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:lk_show_right_layout="true"
+        app:lk_search_edit_margin_left="0dp"
+        app:lk_search_padding_left="10dp"
+        app:lk_search_background="#F0F0F0"
+        app:lk_search_padding_right="10dp"
+        app:lk_show_search_before_icon="false"
+        app:lk_toolbar_menu_text="取消" />
+
+</LinearLayout>
