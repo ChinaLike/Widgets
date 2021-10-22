@@ -15,11 +15,9 @@ import com.core.widget.R
  */
 class SimpleToolbar : BaseToolbar {
 
-    private var title: String? = null
-
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int =0) : super(context, attributeSet, defStyleAttr) {
-        title = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
+        toolbarTitle = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
         initAttr(context, attributeSet)
         initView()
     }
@@ -30,7 +28,7 @@ class SimpleToolbar : BaseToolbar {
             for (i in 0 until indexCount) {
                 when (val attr = getIndex(i)) {
                     R.styleable.SimpleToolbar_lk_toolbar_title -> {
-                        title = getString(attr)
+                        toolbarTitle = getString(attr)
                     }
                     R.styleable.SimpleToolbar_lk_toolbar_title_text_color -> {
                         builder.titleTextColor = getColor(attr, builder.themeColor)
@@ -51,7 +49,7 @@ class SimpleToolbar : BaseToolbar {
         binding.toolbarTitle.visibility = VISIBLE
         binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
         binding.toolbarTitle.setTextColor(builder.titleTextColor ?: builder.themeColor)
-        binding.toolbarTitle.text = title
+        binding.toolbarTitle.text = toolbarTitle
         binding.toolbarTitle.typeface = Typeface.defaultFromStyle(builder.titleTextStyle)
     }
 

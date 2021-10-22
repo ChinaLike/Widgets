@@ -36,10 +36,29 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/lk_toolbar_search_edit_margin_left"
             android:background="@null"
-            android:maxLines="1"
-            android:singleLine="true"
+            android:hint="请输入搜索内容"
             android:imeOptions="actionSearch"
-            android:hint="请输入搜索内容" />
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/disableReplaceText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/lk_toolbar_search_edit_margin_left"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/clearIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            android:src="@drawable/lk_icon_edit_text_clear" />
 
     </LinearLayout>
 

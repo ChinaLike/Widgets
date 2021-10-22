@@ -34,6 +34,8 @@ import com.core.widget.edit.OnTextChangeListener
  * 带搜索的ToolBar的布局
  * @author like
  * @date 8/30/21 2:30 PM
+ *
+ * TODO 此文件有问题，只是暂时满足需求，等新需求做完了，再来优化
  */
 class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorActionListener {
 
@@ -54,11 +56,10 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
      */
     private var searchEnable: Boolean = true
 
-    private var title: String? = null
 
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
-        title = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
+        toolbarTitle = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
 
         initAttr(context, attributeSet)
         initView()
@@ -69,7 +70,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             for (i in 0 until indexCount) {
                 when (val attr = getIndex(i)) {
                     R.styleable.SearchToolbar_lk_toolbar_title -> {
-                        title = getString(attr)
+                        toolbarTitle = getString(attr)
                     }
                     R.styleable.SearchToolbar_lk_toolbar_title_text_color -> {
                         builder.titleTextColor = getColor(attr, builder.themeColor)
@@ -195,6 +196,10 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             toolbarClearEditText.setTextColor(builder.searchTextColor)
             toolbarClearEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.searchTextSize)
             toolbarClearEditText.setDisabled(!searchEnable)
+            //设置替换布局样式
+            disableReplaceText.text = builder.searchText
+            disableReplaceText.setTextColor(builder.searchTextColor)
+            disableReplaceText.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.searchTextSize)
             //设置操作图标
             toolbarOperationIcon.setImageDrawable(builder.operationIcon)
             toolbarOperationText.text = builder.operationText
@@ -204,7 +209,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             //标题
             binding.toolbarTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.titleTextSize)
             binding.toolbarTitle.setTextColor(builder.titleTextColor ?: builder.themeColor)
-            binding.toolbarTitle.text = title
+            binding.toolbarTitle.text = toolbarTitle
 
             toolbarOperationIcon.onDebouncedClick {
                 toolbarInputLayout.visibility = VISIBLE
@@ -216,6 +221,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             toolbarOperationText.onDebouncedClick {
                 hideKeyboard()
                 childBinding?.toolbarClearEditText?.setText("")
+                childBinding?.disableReplaceText?.text = ""
                 val change = onToolbarListener?.onSearchCancel()
                 if (onToolbarListener == null || change == true) {
                     toolbarInputLayout.visibility = GONE
@@ -230,6 +236,25 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
 
             setSearchBeforeIconSize(builder.searchBeforeIconWidth, builder.searchBeforeIconHeight)
             setOperationIconSize(builder.operationIconWidth, builder.operationIconHeight)
+
+            //设置布局
+            if (searchEnable) {
+                toolbarClearEditText.visibility = View.VISIBLE
+                disableReplaceText.visibility = View.GONE
+                clearIcon.visibility = View.GONE
+            } else {
+                toolbarClearEditText.visibility = View.GONE
+                disableReplaceText.visibility = View.VISIBLE
+                clearIcon.visibility = View.VISIBLE
+                disableReplaceText.onDebouncedClick {
+                    onToolbarListener?.onMiddleLayoutClick(toolbarClearEditText.text.toString())
+                }
+            }
+
+            clearIcon.onDebouncedClick {
+                setSearchText("")
+                onToolbarListener?.onClear()
+            }
         }
     }
 
@@ -510,6 +535,11 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
         if (layoutParams is MarginLayoutParams) {
             layoutParams.leftMargin = builder.searchEditMarginLeft.toInt()
         }
+
+        val layoutParams1 = childBinding?.disableReplaceText?.layoutParams
+        if (layoutParams1 is MarginLayoutParams) {
+            layoutParams1.leftMargin = builder.searchEditMarginLeft.toInt()
+        }
     }
 
     /**
@@ -528,6 +558,15 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchEnable(enable: Boolean) {
         searchEnable = enable
         childBinding?.toolbarClearEditText?.setDisabled(!searchEnable)
+        if (enable){
+            childBinding?.toolbarClearEditText?.visibility = View.VISIBLE
+            childBinding?.disableReplaceText?.visibility = View.GONE
+            childBinding?.clearIcon?.visibility = View.GONE
+        }else{
+            childBinding?.toolbarClearEditText?.visibility = View.GONE
+            childBinding?.disableReplaceText?.visibility = View.VISIBLE
+            childBinding?.clearIcon?.visibility = View.VISIBLE
+        }
     }
 
     /**
@@ -546,6 +585,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchText(searchText: String?) {
         builder.searchText = searchText
         childBinding?.toolbarClearEditText?.setText(searchText)
+        childBinding?.disableReplaceText?.setText(searchText)
     }
 
     /**
@@ -555,6 +595,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchTextSize(@Dimension(unit = Dimension.PX) textSize: Float) {
         builder.searchTextSize = textSize
         childBinding?.toolbarClearEditText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        childBinding?.disableReplaceText?.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
     }
 
     /**
@@ -564,6 +605,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     fun setSearchTextColor(@ColorInt textColor: Int) {
         builder.searchTextColor = textColor
         childBinding?.toolbarClearEditText?.setTextColor(textColor)
+        childBinding?.disableReplaceText?.setTextColor(textColor)
     }
 
     /**

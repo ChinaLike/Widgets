@@ -54,4 +54,19 @@ interface OnToolbarListener {
         return true
     }
 
+    /**
+     * 中间布局被点击
+     * @param [text] 点击时已经输入的文本或者标题
+     */
+    fun onMiddleLayoutClick(text:String?){
+
+    }
+
+    /**
+     * 清除
+     */
+    fun onClear(){
+
+    }
+
 }

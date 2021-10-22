@@ -53,6 +53,11 @@ abstract class BaseToolbar : LinearLayout {
      */
     private var simpleMenuText: String? = ""
 
+    /**
+     * 标题
+     */
+    protected var toolbarTitle: String? = null
+
     @JvmOverloads
     constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : super(context, attributeSet, defStyleAttr) {
         orientation = VERTICAL
@@ -166,6 +171,10 @@ abstract class BaseToolbar : LinearLayout {
         binding.toolbarBackText.onDebouncedClick {
             onToolbarListener?.onClose()
         }
+        //设置中间布局的点击事件
+        binding.toolbarTitle.onDebouncedClick {
+            onToolbarListener?.onMiddleLayoutClick(toolbarTitle)
+        }
     }
 
     /**
@@ -232,7 +241,7 @@ abstract class BaseToolbar : LinearLayout {
         //文字
         val textView = AppCompatTextView(context).apply {
             layoutParams = LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
-            setTextSize(TypedValue.COMPLEX_UNIT_PX,builder.menuTextSize)
+            setTextSize(TypedValue.COMPLEX_UNIT_PX, builder.menuTextSize)
             setTextColor(builder.menuTextColor)
         }
 
