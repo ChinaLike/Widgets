@@ -201,13 +201,10 @@ abstract class BaseToolbar : LinearLayout {
         super.onDraw(canvas)
         val rightWidth = binding.toolbarRightLayout.width
         val leftWidth = binding.toolbarLeftLayout.width
-        val middleWidth = resources.displayMetrics.widthPixels
-        -2 * (rightWidth.coerceAtLeast(leftWidth))
-        -builder.toolbarContentMarginLeft.toInt()
-        -builder.toolbarContentMarginRight.toInt()
-        -builder.toolbarPaddingRight
-        -builder.toolbarPaddingLeft
-        binding.toolbarTitle.layoutParams = ConstraintLayout.LayoutParams(middleWidth, LayoutParams.WRAP_CONTENT).apply {
+        val middleWidth =
+            resources.displayMetrics.widthPixels - 2 * (rightWidth.coerceAtLeast(leftWidth)) - builder.toolbarContentMarginLeft.toInt() - builder.toolbarContentMarginRight.toInt() - builder.toolbarPaddingRight - builder.toolbarPaddingLeft
+
+        binding.toolbarTitle.layoutParams = ConstraintLayout.LayoutParams(middleWidth.toInt(), LayoutParams.WRAP_CONTENT).apply {
             leftToLeft = ConstraintSet.PARENT_ID
             rightToRight = ConstraintSet.PARENT_ID
             topToTop = ConstraintSet.PARENT_ID
