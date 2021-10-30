@@ -33,4 +33,14 @@
         android:background="#03A9F4"
         android:text="分页Grid" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dividerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
+        android:textColor="@color/white"
+        android:background="#03A9F4"
+        android:text="分割线" />
+
 </LinearLayout>

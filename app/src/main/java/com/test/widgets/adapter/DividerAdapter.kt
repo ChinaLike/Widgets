@@ -1,41 +1,23 @@
-package com.core.widget.pager
+package com.test.widgets.adapter
 
-import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.core.widget.R
-import com.core.widget.divider.XItemDecoration
+import com.test.widgets.R
 
 /**
- * 页面适配器
+ *
  * @author like
- * @date 10/13/21 1:41 PM
+ * @date 10/28/21 9:55 AM
  */
-internal class PagerAdapter(private val context: Context, private val dataList: MutableList<MutableList<View>>) :
-    RecyclerView.Adapter<PagerAdapter.PagerViewHolder>() {
+class DividerAdapter : RecyclerView.Adapter<DividerAdapter.DividerViewHolder>() {
 
-    /**
-     * Item点击回调
-     */
-    var onItemClickCallback: OnItemClickCallback? = null
 
-    /**
-     * 水平分割线宽度
-     */
-    var horizontalDivider: Int = 0
-
-    /**
-     * 垂直分割线宽度
-     */
-    var verticalDivider: Int = 0
-
-    /**
-     * 一页显示的行数
-     */
-    var spanSize: Int = 0
+    class DividerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val text = itemView.findViewById<AppCompatTextView>(R.id.title)
+    }
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
@@ -59,9 +41,8 @@ internal class PagerAdapter(private val context: Context, private val dataList: 
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.lk_adapter_pager_viewpager, parent, false)
-        return PagerViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DividerViewHolder {
+        return DividerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapter_divider, parent, false))
     }
 
     /**
@@ -85,19 +66,8 @@ internal class PagerAdapter(private val context: Context, private val dataList: 
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        if (spanSize <= 0) {
-            return
-        }
-        val bean: MutableList<View> = dataList[position]
-        val adapter: GridAdapter = GridAdapter(position, bean).apply {
-            onItemClickCallback = this@PagerAdapter.onItemClickCallback
-        }
-        if (holder.recyclerView.layoutManager == null) {
-            holder.recyclerView.layoutManager = PagerGridLayoutManager(context, spanSize)
-            holder.recyclerView.addItemDecoration(XItemDecoration(horizontalDivider, verticalDivider, Color.TRANSPARENT))
-        }
-        holder.recyclerView.adapter = adapter
+    override fun onBindViewHolder(holder: DividerViewHolder, position: Int) {
+        holder.text.text = "我是标题-${position}"
     }
 
     /**
@@ -106,11 +76,7 @@ internal class PagerAdapter(private val context: Context, private val dataList: 
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return dataList.size
+        return 10
     }
 
-
-    internal class PagerViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val recyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView)
-    }
 }
