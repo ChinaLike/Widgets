@@ -76,7 +76,7 @@ class DividerAdapter : RecyclerView.Adapter<DividerAdapter.DividerViewHolder>() 
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        return 10
+        return 12
     }
 
 }
