@@ -367,10 +367,13 @@ internal class GridItemDecoration : RecyclerItemDecoration() {
         val spanCount = layoutManager.spanCount
         val spanIndex = spanSizeLookup.getSpanIndex(itemPosition, spanCount)
         val spanSize = spanSizeLookup.getSpanSize(itemPosition)
-        return if (orientation == GridLayoutManager.VERTICAL) {
-            (childCount - itemPosition) / (spanCount * 1.0f) <= 1
-        } else {
-            spanIndex + spanSize == spanCount
-        }
+        val row = childCount / spanCount + if (childCount % spanCount == 0) 0 else 1
+        var currentRow = itemPosition / spanCount + if (childCount % spanCount == 0) 0 else 1
+        return row == currentRow
+//        return if (orientation == GridLayoutManager.VERTICAL) {
+//            (childCount - itemPosition) / (spanCount * 1.0f) <= 1
+//        } else {
+//            spanIndex + spanSize == spanCount
+//        }
     }
 }
