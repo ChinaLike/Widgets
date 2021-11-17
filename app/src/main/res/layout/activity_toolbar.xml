@@ -38,4 +38,12 @@
         app:lk_show_search_before_icon="false"
         app:lk_toolbar_menu_text="取消" />
 
+    <com.core.widget.toolbar.SearchToolbar
+        android:id="@+id/searchToolbar2"
+        android:layout_width="match_parent"
+        app:lk_search_enable="false"
+        app:lk_search_hint_text="请输入"
+        app:lk_show_search_before_icon="false"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

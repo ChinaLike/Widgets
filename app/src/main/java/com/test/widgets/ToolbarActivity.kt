@@ -15,6 +15,13 @@ class ToolbarActivity : BaseActivity<ActivityToolbarBinding>(), OnToolbarListene
         binding.searchToolbar1.onToolbarListener = this
         binding.searchToolbar1.setSearchText("输入框无法点击输入")
 
+        binding.searchToolbar2.onToolbarListener = object : OnToolbarListener {
+            override fun onMiddleLayoutClick(text: String?) {
+                binding.searchToolbar2.setSearchText("王者")
+                Toast.makeText(this@ToolbarActivity, "中间布局被点击：${text}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     override fun onMiddleLayoutClick(text: String?) {
