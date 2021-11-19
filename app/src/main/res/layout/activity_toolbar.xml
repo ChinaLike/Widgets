@@ -43,6 +43,8 @@
         android:layout_width="match_parent"
         app:lk_search_enable="false"
         app:lk_search_hint_text="请输入"
+        app:lk_search_hint_text_color="#FF0000"
+        app:lk_search_hint_text_size="10sp"
         app:lk_show_search_before_icon="false"
         android:layout_height="wrap_content"/>
 

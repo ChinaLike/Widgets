@@ -158,6 +158,7 @@ class XItemDecoration : RecyclerView.ItemDecoration {
 
             }
             is LinearLayoutManager -> {
+                isDrawLastRow = true
                 itemDecoration = LinearItemDecoration().apply {
                     orientation = manager.orientation
                     //使用[horizontalSpace] 和 [verticalSpace] 一样
