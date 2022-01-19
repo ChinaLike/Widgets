@@ -12,6 +12,7 @@ class ToolbarActivity : BaseActivity<ActivityToolbarBinding>(), OnToolbarListene
 
         binding.simpleToolbar.onToolbarListener = this
         binding.searchToolbar.onToolbarListener = this
+        binding.searchToolbar.showKeyboard()
         binding.searchToolbar1.onToolbarListener = this
         binding.searchToolbar1.setSearchText("输入框无法点击输入")
 

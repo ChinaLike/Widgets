@@ -297,7 +297,7 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     /**
      * 隐藏键盘
      */
-    private fun hideKeyboard() {
+    fun hideKeyboard() {
         val manager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         manager.hideSoftInputFromWindow(windowToken, 0)
     }
@@ -305,8 +305,10 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
     /**
      * 显示键盘
      */
-    private fun showKeyboard() {
+    fun showKeyboard() {
         if (searchEnable) {
+            childBinding?.toolbarClearEditText?.isFocusable = true
+            childBinding?.toolbarClearEditText?.isFocusableInTouchMode = true
             childBinding?.toolbarClearEditText?.requestFocus()
             childBinding?.toolbarClearEditText?.setSelection(childBinding?.toolbarClearEditText?.text?.toString()?.trim()?.length ?: 0)
             val manager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

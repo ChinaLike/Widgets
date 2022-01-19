@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Widgets">
         <activity android:name=".RecyclerViewActivity"></activity>
-        <activity android:name=".ToolbarActivity" />
+        <activity android:name=".ToolbarActivity" android:windowSoftInputMode="stateVisible"/>
         <activity android:name=".PagerGridActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
