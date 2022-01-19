@@ -74,6 +74,11 @@ internal class Builder constructor(context: Context) {
     var titleTextStyle: Int = toolbarConfig.titleTextStyle
 
     /**
+     * 标题最多显示个数
+     */
+    var titleMaxEms:Int = toolbarConfig.titleMaxEms
+
+    /**
      * 左内边距
      */
     @Dimension(unit = Dimension.PX)

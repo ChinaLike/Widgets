@@ -3,6 +3,7 @@ package com.core.widget.toolbar
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.widget.FrameLayout
@@ -20,6 +21,10 @@ class SimpleToolbar : BaseToolbar {
         toolbarTitle = if (!isInEditMode) (context as? Activity)?.title?.toString() else ""
         initAttr(context, attributeSet)
         initView()
+        binding.toolbarTitle.apply {
+            maxEms = builder.titleMaxEms
+            isSelected = true
+        }
     }
 
     private fun initAttr(context: Context, attributeSet: AttributeSet?) =
@@ -38,6 +43,9 @@ class SimpleToolbar : BaseToolbar {
                     }
                     R.styleable.SimpleToolbar_android_textStyle -> {
                         builder.titleTextStyle = getInt(attr, builder.titleTextStyle)
+                    }
+                    R.styleable.SimpleToolbar_lk_toolbar_title_max_ems ->{
+                        builder.titleMaxEms = getInt(attr,builder.titleMaxEms)
                     }
                 }
             }

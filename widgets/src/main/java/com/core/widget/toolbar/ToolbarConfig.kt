@@ -72,6 +72,11 @@ class ToolbarConfig private constructor(context: Context) {
     var titleTextStyle: Int = Typeface.NORMAL
 
     /**
+     * 标题最多显示个数
+     */
+    var titleMaxEms:Int = 10
+
+    /**
      * 左内边距
      */
     @Dimension(unit = Dimension.PX)

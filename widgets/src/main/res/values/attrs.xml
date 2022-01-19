@@ -75,6 +75,7 @@
         <enum name="left" value="3" />
         <enum name="right" value="4" />
     </attr>
+    <attr name="lk_toolbar_title_max_ems" format="integer"/>
 
     <declare-styleable name="BaseToolbar">
         <attr name="lk_show_left_layout" />
@@ -104,6 +105,7 @@
         <attr name="lk_toolbar_title" />
         <attr name="lk_toolbar_title_text_size" />
         <attr name="lk_toolbar_title_text_color" />
+        <attr name="lk_toolbar_title_max_ems"/>
         <attr name="android:textStyle" />
     </declare-styleable>
 

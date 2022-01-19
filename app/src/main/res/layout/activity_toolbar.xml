@@ -13,6 +13,12 @@
         android:layout_height="wrap_content"
         app:lk_toolbar_title="导航栏" />
 
+    <com.core.widget.toolbar.SimpleToolbar
+        android:layout_width="match_parent"
+        app:lk_toolbar_title="标题栏过长标题栏过长标题栏过长标题栏过长标题栏过长标题栏过长"
+        app:lk_toolbar_title_max_ems="5"
+        android:layout_height="wrap_content"/>
+
     <com.core.widget.toolbar.SearchToolbar
         android:id="@+id/searchToolbar"
         android:layout_width="match_parent"
