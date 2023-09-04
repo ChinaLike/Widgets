@@ -197,7 +197,7 @@ abstract class BaseToolbar : LinearLayout {
      */
     abstract fun contentLayout(parent: FrameLayout)
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val rightWidth = binding.toolbarRightLayout.width
         val leftWidth = binding.toolbarLeftLayout.width
