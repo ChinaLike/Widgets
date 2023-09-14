@@ -25,6 +25,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.widget.addTextChangedListener
 import com.core.ex.onDebouncedClick
 import com.core.widget.R
 import com.core.widget.databinding.LkToolbarSearchBinding
@@ -72,99 +73,131 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                     R.styleable.SearchToolbar_lk_toolbar_title -> {
                         toolbarTitle = getString(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_toolbar_title_text_color -> {
                         builder.titleTextColor = getColor(attr, builder.themeColor)
                     }
+
                     R.styleable.SearchToolbar_lk_toolbar_title_text_size -> {
                         builder.titleTextSize = getDimension(attr, builder.titleTextSize)
                     }
+
                     R.styleable.SearchToolbar_lk_search_height -> {
                         builder.searchHeight = getDimension(attr, builder.searchHeight)
                     }
+
                     R.styleable.SearchToolbar_lk_search_radius -> {
                         builder.searchRadius = getDimension(attr, 999999F)
                     }
+
                     R.styleable.SearchToolbar_lk_search_background -> {
                         builder.searchBackground = getDrawable(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_search_stroke_width -> {
                         builder.searchStrokeWidth = getDimension(attr, builder.searchStrokeWidth)
                     }
+
                     R.styleable.SearchToolbar_lk_search_stroke_color -> {
                         builder.searchStrokeColor = getColor(attr, builder.searchStrokeColor)
                     }
+
                     R.styleable.SearchToolbar_lk_search_padding_left -> {
                         builder.searchPaddingLeft = getDimension(attr, builder.searchPaddingLeft)
                     }
+
                     R.styleable.SearchToolbar_lk_search_padding_right -> {
                         builder.searchPaddingRight = getDimension(attr, builder.searchPaddingRight)
                     }
+
                     R.styleable.SearchToolbar_lk_search_margin_right -> {
                         builder.searchMarginRight = getDimension(attr, builder.searchMarginRight)
                     }
+
                     R.styleable.SearchToolbar_lk_default_show_search -> {
                         defaultShowSearch = getBoolean(attr, defaultShowSearch)
                     }
+
                     R.styleable.SearchToolbar_lk_search_before_icon -> {
                         builder.searchBeforeIcon = getDrawable(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_search_before_icon_width -> {
                         builder.searchBeforeIconWidth = getDimension(attr, builder.searchBeforeIconWidth)
                     }
+
                     R.styleable.SearchToolbar_lk_search_before_icon_height -> {
                         builder.searchBeforeIconHeight = getDimension(attr, builder.searchBeforeIconHeight)
                     }
+
                     R.styleable.SearchToolbar_lk_search_before_icon_color -> {
                         builder.searchBeforeIconColor = getColor(attr, builder.themeColor)
                     }
+
                     R.styleable.SearchToolbar_lk_search_edit_margin_left -> {
                         builder.searchEditMarginLeft = getDimension(attr, builder.searchEditMarginLeft)
                     }
+
                     R.styleable.SearchToolbar_lk_search_hint_text -> {
                         builder.searchHintText = getString(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_search_enable -> {
                         searchEnable = getBoolean(attr, searchEnable)
                     }
+
                     R.styleable.SearchToolbar_lk_search_hint_text_size -> {
                         builder.searchHintTextSize = getDimension(attr, builder.searchHintTextSize)
                     }
+
                     R.styleable.SearchToolbar_lk_search_hint_text_color -> {
                         builder.searchHintTextColor = getColor(attr, builder.searchHintTextColor)
                     }
+
                     R.styleable.SearchToolbar_lk_search_text -> {
                         builder.searchText = getString(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_search_text_size -> {
                         builder.searchTextSize = getDimension(attr, builder.searchTextSize)
                     }
+
                     R.styleable.SearchToolbar_lk_search_text_color -> {
                         builder.searchTextColor = getColor(attr, builder.searchTextColor)
                     }
+
                     R.styleable.SearchToolbar_lk_show_operation -> {
                         showOperation = getBoolean(attr, showOperation)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_icon -> {
                         builder.operationIcon = getDrawable(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_icon_width -> {
                         builder.operationIconWidth = getDimension(attr, builder.operationIconWidth)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_icon_height -> {
                         builder.operationIconHeight = getDimension(attr, builder.operationIconHeight)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_text -> {
                         builder.operationText = getString(attr)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_text_size -> {
                         builder.operationTextSize = getDimension(attr, builder.operationTextSize)
                     }
+
                     R.styleable.SearchToolbar_lk_operation_text_color -> {
                         builder.operationTextColor = getColor(attr, builder.operationTextColor)
                     }
+
                     R.styleable.SearchToolbar_android_textStyle -> {
                         builder.titleTextStyle = getInt(attr, builder.titleTextStyle)
                     }
+
                     R.styleable.SearchToolbar_lk_show_search_before_icon -> {
                         builder.showSearchBeforeIcon = getBoolean(attr, builder.showSearchBeforeIcon)
                     }
@@ -227,7 +260,9 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
                 }
             }
 
-            toolbarClearEditText.setOnTextChangeListener(this@SearchToolbar)
+            toolbarClearEditText.addTextChangedListener {
+                onToolbarListener?.onSearchTextChanged(it?.toString())
+            }
             toolbarClearEditText.setOnEditorActionListener(this@SearchToolbar)
 
             setSearchBeforeIconSize(builder.searchBeforeIconWidth, builder.searchBeforeIconHeight)

@@ -19,7 +19,7 @@ import com.core.widget.R
  * @author like
  * @date 8/30/21 11:02 AM
  */
-class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher {
+class ClearEditText : AppCompatEditText, View.OnFocusChangeListener {
 
     /**
      * 默认Icon尺寸（dp）
@@ -98,8 +98,6 @@ class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher
      */
     var hintIconHeight: Int = hintIconSize
 
-    private var onTextChangeListener: OnTextChangeListener? = null
-
     private var onClearListener: OnClearListener? = null
 
     /**
@@ -167,7 +165,6 @@ class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher
         }
 
         onFocusChangeListener = this
-        addTextChangedListener(this)
         compoundDrawablePadding = iconMarginLeft.toInt()
         setDisabled(disabled)
     }
@@ -225,17 +222,6 @@ class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher
         }
 
     }
-
-
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-        onTextChangeListener?.beforeTextChanged(s, start, count, after)
-    }
-
-
-    override fun afterTextChanged(s: Editable?) {
-        onTextChangeListener?.afterTextChanged(s)
-    }
-
     override fun onTextChanged(
         text: CharSequence?,
         start: Int,
@@ -246,7 +232,6 @@ class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher
         if (!TextUtils.isEmpty(text?.toString())) {
             setClearIcon()
         }
-        onTextChangeListener?.onTextChanged(text, start, lengthBefore, lengthAfter)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -286,13 +271,6 @@ class ClearEditText : AppCompatEditText, View.OnFocusChangeListener, TextWatcher
         isFocusableInTouchMode = !disabled
         clearAllIcon()
         disabledTextColor?.let { setTextColor(it) }
-    }
-
-    /**
-     * 设置数据变动监听
-     */
-    fun setOnTextChangeListener(onTextChangeListener: OnTextChangeListener) {
-        this.onTextChangeListener = onTextChangeListener
     }
 
     /**
