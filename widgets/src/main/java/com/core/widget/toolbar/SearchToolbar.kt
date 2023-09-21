@@ -29,7 +29,6 @@ import androidx.core.widget.addTextChangedListener
 import com.core.ex.onDebouncedClick
 import com.core.widget.R
 import com.core.widget.databinding.LkToolbarSearchBinding
-import com.core.widget.edit.OnTextChangeListener
 
 /**
  * 带搜索的ToolBar的布局
@@ -38,7 +37,7 @@ import com.core.widget.edit.OnTextChangeListener
  *
  * TODO 此文件有问题，只是暂时满足需求，等新需求做完了，再来优化
  */
-class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorActionListener {
+class SearchToolbar : BaseToolbar, TextView.OnEditorActionListener {
 
     private var childBinding: LkToolbarSearchBinding? = null
 
@@ -349,10 +348,6 @@ class SearchToolbar : BaseToolbar, OnTextChangeListener, TextView.OnEditorAction
             val manager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             manager.showSoftInput(childBinding?.toolbarClearEditText, 0)
         }
-    }
-
-    override fun onTextChanged(text: CharSequence?, start: Int, lengthBefore: Int, lengthAfter: Int) {
-        onToolbarListener?.onSearchTextChanged(text?.toString())
     }
 
     /**

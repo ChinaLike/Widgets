@@ -50,7 +50,7 @@
     <attr name="lk_toolbar_title_text_size" format="dimension" />
     <attr name="lk_toolbar_title_text_color" format="color" />
     <attr name="lk_show_left_layout" format="boolean" />
-    <attr name="lk_back_icon" format="dimension" />
+    <attr name="lk_back_icon" format="reference" />
     <attr name="lk_back_icon_color" format="color" />
     <attr name="lk_show_back_text" format="boolean" />
     <attr name="lk_back_text" format="string" />

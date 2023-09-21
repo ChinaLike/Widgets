@@ -1,5 +1,6 @@
 package com.test.widgets
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import com.core.widget.toolbar.OnToolbarListener
@@ -23,6 +24,7 @@ class ToolbarActivity : BaseActivity<ActivityToolbarBinding>(), OnToolbarListene
             }
         }
 
+        binding.searchToolbar2.setBackIconColor(Color.RED)
     }
 
     override fun onMiddleLayoutClick(text: String?) {

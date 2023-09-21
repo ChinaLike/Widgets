@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.core.widget.R
 
@@ -26,7 +27,8 @@ internal class Builder constructor(context: Context) {
     /**
      * 返回按钮
      */
-    var backIcon: Drawable? = toolbarConfig.backIcon
+    @DrawableRes
+    var backIcon: Int = toolbarConfig.backIcon
 
     /**
      * 返回按钮颜色

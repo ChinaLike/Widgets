@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.text.TextUtils
@@ -17,6 +16,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -64,7 +64,6 @@ abstract class BaseToolbar : LinearLayout {
         initAttr(context, attributeSet)
         setPadding(0, getStatusBarHeight(), 0, 0)
         contentLayout(binding.toolbarMiddleLayout)
-
         initView()
     }
 
@@ -76,52 +75,68 @@ abstract class BaseToolbar : LinearLayout {
                         val showLeftLayout = getBoolean(attr, true)
                         binding.toolbarLeftLayout.visibility = if (showLeftLayout) VISIBLE else GONE
                     }
+
                     R.styleable.BaseToolbar_lk_back_icon -> {
-                        builder.backIcon = getDrawable(attr)
+                        builder.backIcon = getResourceId(attr,0)
                     }
+
                     R.styleable.BaseToolbar_lk_back_icon_color -> {
                         builder.backIconColor = getColor(attr, builder.themeColor)
                     }
+
                     R.styleable.BaseToolbar_lk_show_back_text -> {
                         builder.showBackText = getBoolean(attr, false)
                     }
+
                     R.styleable.BaseToolbar_lk_back_text -> {
                         builder.backText = getString(attr) ?: builder.backText
                     }
+
                     R.styleable.BaseToolbar_lk_back_text_margin_left -> {
                         builder.backTextMarginLeft = getDimension(attr, builder.backTextMarginLeft)
                     }
+
                     R.styleable.BaseToolbar_lk_back_text_size -> {
                         builder.backTextSize = getDimension(attr, builder.backTextSize)
                     }
+
                     R.styleable.BaseToolbar_lk_back_text_color -> {
                         builder.backTextColor = getColor(attr, builder.themeColor)
                     }
+
                     R.styleable.BaseToolbar_lk_show_right_layout -> {
                         val showRightLayout = getBoolean(attr, false)
                         binding.toolbarRightLayout.visibility = if (showRightLayout) VISIBLE else GONE
                     }
+
                     R.styleable.BaseToolbar_lk_padding_left -> {
                         builder.toolbarPaddingLeft = getDimension(attr, builder.toolbarPaddingLeft)
                     }
+
                     R.styleable.BaseToolbar_lk_padding_right -> {
                         builder.toolbarPaddingRight = getDimension(attr, builder.toolbarPaddingRight)
                     }
+
                     R.styleable.BaseToolbar_lk_content_margin_left -> {
                         builder.toolbarContentMarginLeft = getDimension(attr, builder.toolbarContentMarginLeft)
                     }
+
                     R.styleable.BaseToolbar_lk_content_margin_right -> {
                         builder.toolbarContentMarginRight = getDimension(attr, builder.toolbarContentMarginRight)
                     }
+
                     R.styleable.BaseToolbar_lk_show_divider -> {
                         builder.showDivider = getBoolean(attr, builder.showDivider)
                     }
+
                     R.styleable.BaseToolbar_lk_divider_color -> {
                         builder.dividerColor = getColor(attr, builder.dividerColor)
                     }
+
                     R.styleable.BaseToolbar_lk_toolbar_menu_icon -> {
                         simpleMenuDrawable = getResourceId(attr, 0)
                     }
+
                     R.styleable.BaseToolbar_lk_toolbar_menu_text -> {
                         simpleMenuText = getString(attr)
                     }
@@ -129,12 +144,15 @@ abstract class BaseToolbar : LinearLayout {
                     R.styleable.BaseToolbar_lk_toolbar_menu_text_size -> {
                         builder.menuTextSize = getDimension(attr, builder.menuTextSize)
                     }
+
                     R.styleable.BaseToolbar_lk_toolbar_menu_text_color -> {
                         builder.menuTextColor = getColor(attr, builder.menuTextColor)
                     }
+
                     R.styleable.BaseToolbar_lk_toolbar_menu_text_location -> {
                         builder.menuTextLocation = getInt(attr, builder.menuTextLocation)
                     }
+
                     R.styleable.BaseToolbar_lk_toolbar_menu_text_margin_icon -> {
                         builder.menuTextMarginIcon = getDimension(attr, builder.menuTextMarginIcon)
                     }
@@ -143,8 +161,9 @@ abstract class BaseToolbar : LinearLayout {
             recycle()
         }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun initView() {
-        binding.toolbarBackIcon.setImageDrawable(builder.backIcon)
+        binding.toolbarBackIcon.setImageResource(builder.backIcon)
         binding.toolbarBackIcon.setColorFilter(builder.backIconColor ?: builder.themeColor)
 
         binding.toolbarBackText.visibility = if (builder.showBackText) VISIBLE else GONE
@@ -254,6 +273,7 @@ abstract class BaseToolbar : LinearLayout {
                     contentLayout.addView(imageView)
                 }
             }
+
             Location.LEFT -> {
                 contentLayout.orientation = HORIZONTAL
                 simpleMenuText?.let {
@@ -265,6 +285,7 @@ abstract class BaseToolbar : LinearLayout {
                     contentLayout.addView(imageView)
                 }
             }
+
             Location.RIGHT -> {
                 contentLayout.orientation = HORIZONTAL
                 simpleMenuDrawable?.let {
@@ -276,6 +297,7 @@ abstract class BaseToolbar : LinearLayout {
                     contentLayout.addView(textView)
                 }
             }
+
             else -> {
                 contentLayout.orientation = VERTICAL
                 simpleMenuDrawable?.let {
@@ -324,9 +346,9 @@ abstract class BaseToolbar : LinearLayout {
     /**
      * 设置返回图标
      */
-    fun setBackIcon(backIcon: Drawable) {
+    fun setBackIcon(@DrawableRes backIcon: Int) {
         builder.backIcon = backIcon
-        binding.toolbarBackIcon.setImageDrawable(backIcon)
+        binding.toolbarBackIcon.setImageResource(backIcon)
     }
 
     /**

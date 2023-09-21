@@ -41,6 +41,7 @@
         app:lk_search_background="#F0F0F0"
         app:lk_search_enable="false"
         app:lk_search_padding_right="10dp"
+        app:lk_back_icon="@mipmap/ic_launcher"
         app:lk_show_search_before_icon="false"
         app:lk_toolbar_menu_text="取消" />
 

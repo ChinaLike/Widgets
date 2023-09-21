@@ -10,8 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbarContentLayout"
         android:layout_width="match_parent"
-        android:paddingHorizontal="@dimen/lk_toolbar_horizontal_padding"
-        android:layout_height="?android:attr/actionBarSize">
+        android:layout_height="?android:attr/actionBarSize"
+        android:paddingHorizontal="@dimen/lk_toolbar_horizontal_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbarLeftLayout"
@@ -26,9 +26,9 @@
                 android:layout_height="match_parent"
                 android:paddingRight="@dimen/lk_toolbar_back_text_margin_left"
                 android:scaleType="center"
-                android:src="@drawable/lk_icon_toolbar_back"
-                android:tint="@color/lk_toolbar_default_color"
-                app:layout_constraintLeft_toLeftOf="parent" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:src="@drawable/lk_icon_toolbar_back"
+                tools:tint="@color/lk_toolbar_default_color" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toolbarBackText"
@@ -36,9 +36,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="关闭"
-                android:visibility="gone"
                 android:textColor="@color/lk_toolbar_default_color"
                 android:textSize="@dimen/lk_toolbar_back_text_size"
+                android:visibility="gone"
                 app:layout_constraintLeft_toRightOf="@id/toolbarBackIcon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -55,8 +55,8 @@
             android:id="@+id/toolbarRightLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:visibility="gone"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -64,13 +64,13 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:singleLine="true"
             android:ellipsize="marquee"
-            android:scrollHorizontally="true"
             android:focusable="false"
             android:focusableInTouchMode="true"
+            android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
             android:textSize="@dimen/lk_toolbar_title_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
